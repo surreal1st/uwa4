@@ -14,6 +14,7 @@ FTP_HOST = os.environ.get('FTP_HOST')
 FTP_USERNAME = os.environ.get('FTP_USERNAME')
 FTP_PASSWORD = os.environ.get('FTP_PASSWORD')
 FTP_PORT = int(os.environ.get('FTP_PORT', '21'))
+FTP_REMOTE_DIR = os.environ.get('FTP_REMOTE_DIR', '/')  # Remote directory on server
 
 # Files and directories to deploy
 DEPLOY_FILES = [
@@ -36,6 +37,28 @@ def connect_ftp():
         ftp.connect(FTP_HOST, FTP_PORT)
         ftp.login(FTP_USERNAME, FTP_PASSWORD)
         print(f"✅ Connected successfully as {FTP_USERNAME}")
+        
+        # Change to remote directory
+        if FTP_REMOTE_DIR and FTP_REMOTE_DIR != '/':
+            print(f"📁 Changing to remote directory: {FTP_REMOTE_DIR}")
+            try:
+                ftp.cwd(FTP_REMOTE_DIR)
+                print(f"✅ Working in: {FTP_REMOTE_DIR}")
+            except ftplib.error_perm:
+                print(f"⚠️  Remote directory doesn't exist, creating: {FTP_REMOTE_DIR}")
+                # Create directory structure
+                parts = FTP_REMOTE_DIR.strip('/').split('/')
+                current = ''
+                for part in parts:
+                    current = f"{current}/{part}" if current else part
+                    try:
+                        ftp.mkd(current)
+                        print(f"  📁 Created: {current}")
+                    except ftplib.error_perm:
+                        # Directory already exists
+                        pass
+                ftp.cwd(FTP_REMOTE_DIR)
+        
         return ftp
     except Exception as e:
         print(f"❌ FTP connection failed: {e}")
@@ -45,6 +68,8 @@ def create_remote_directory(ftp, remote_path):
     """Create directory on FTP server if it doesn't exist"""
     try:
         ftp.cwd(remote_path)
+        # Change back to base directory
+        ftp.cwd(FTP_REMOTE_DIR if FTP_REMOTE_DIR else '/')
     except ftplib.error_perm:
         # Directory doesn't exist, create it
         try:
@@ -98,6 +123,8 @@ def deploy():
         print("Required: FTP_HOST, FTP_USERNAME, FTP_PASSWORD")
         sys.exit(1)
     
+    print(f"\\n📍 Target directory: {FTP_REMOTE_DIR or '/ (root)'}")
+    
     # Connect to FTP
     ftp = connect_ftp()
     
@@ -122,6 +149,7 @@ def deploy():
         
         print("\\n" + "=" * 60)
         print("✅ Deployment completed successfully!")
+        print(f"🌐 Files deployed to: {FTP_HOST}{FTP_REMOTE_DIR}")
         print("=" * 60)
         
     except Exception as e:
