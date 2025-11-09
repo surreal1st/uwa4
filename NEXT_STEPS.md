@@ -1,322 +1,197 @@
 # NEXT STEPS - UWA Automation System
 
-**Date:** November 9, 2025  
-**System Status:** ✅ **LIVE AND OPERATIONAL**
+**Date:** November 9, 2025 - EVENING SESSION
+**System Status:** ⚠️ **REQUIRES UPDATES**
 
 ---
 
-## 🎯 QUICK STATUS SUMMARY
+## 🎯 CURRENT SESSION PROGRESS
 
-The United Wrestling Accord (UWA) automated content generation system is **fully operational** and generating weekly wrestling shows. Week 1 has been generated and deployed with proper HTML formatting.
+### Issues Identified from Week 2 Generation
 
-**Live Website:** https://shootproject.com/uwa4/  
-**Week 1 Shows:** https://shootproject.com/uwa4/shows/1.html
-
----
-
-## ✅ WHAT WAS JUST COMPLETED (November 9, 2025)
-
-### Morning Session: System Activation
-1. ✅ Reviewed FTP integration and simplified deployment
-2. ✅ Updated all documentation (README, PROJECT_SPECIFICATION)
-3. ✅ Activated production system by uncommenting workflow
-4. ✅ First production run completed successfully
-5. ✅ Week 1 shows generated and deployed
-
-### Afternoon Session: HTML Formatting Fix
-6. ✅ Identified plain text formatting issue in Week 1
-7. ✅ Enhanced prompt with explicit HTML structure requirements
-8. ✅ Reset tracking files to Week 0
-9. ✅ Regenerated Week 1 with proper HTML formatting
-10. ✅ Updated PROJECT_SPECIFICATION with complete status
-
-**Result:** System is now generating properly formatted, readable content automatically.
+1. ✅ **HTML Template Formatting** - Documented
+2. ✅ **Holden Nobody Character Error** - Documented  
+3. ⏸️ **Repetition Prevention** - NOT YET ADDRESSED (paused as requested)
 
 ---
 
-## 🔍 IMMEDIATE VERIFICATION NEEDED
+## 📋 IMMEDIATE ACTION ITEMS
 
-Before the next conversation, verify that Week 1 regeneration completed successfully:
+### 1. Fix HTML Template in Generation Script
+**File:** `scripts/generate_shows.py`
+**Method:** `build_combined_html()` (around line 477)
+**Documentation:** `docs/TEMPLATE_UPDATE_NEEDED.md`
 
-### 1. Check GitHub Actions
-- Go to: https://github.com/surreal1st/uwa4/actions
-- Look for the most recent "Generate UWA Weekly Shows" run
-- Status should be: ✅ **Success** (green checkmark)
-- Check that it completed without errors
+**Problem:** Week 2 shows used old simple template instead of the updated Week 1 format with:
+- Proper header with logo and navigation
+- Brand-colored section headers
+- Quick jump navigation
+- Show metadata display
 
-### 2. Verify Week 1 Content
-- Visit: https://shootproject.com/uwa4/shows/1.html
-- Content should have:
-  - ✅ Proper paragraph breaks (not one giant text block)
-  - ✅ Section headers visible (h2 tags)
-  - ✅ Clean, readable formatting
-  - ✅ All three brand shows (REIGN, Resistance, NEO)
+**Solution:** Replace the `build_combined_html()` method with the version documented in `docs/TEMPLATE_UPDATE_NEEDED.md`
 
-### 3. Check Tracking Files
-- Championship defenses should be logged
-- Match history should contain matches
-- Storyline progression should be updated to Week 1
-- Week counter should be at 1
-
-### 4. Verify Results Page
-- Visit: https://shootproject.com/uwa4/results.html
-- Should show Week 1 as "Latest Results"
-- Archive link should work
+**How to Fix:**
+1. Edit `scripts/generate_shows.py` on GitHub
+2. Find the `build_combined_html` method
+3. Replace with new version from documentation
+4. Commit the change
 
 ---
 
-## 📅 ONGOING OPERATIONS
+### 2. Fix Holden Nobody Character Description
+**File:** `UWA_COMPLETE_GUIDE.md`
+**Documentation:** `docs/HOLDEN_NOBODY_FIX.md`
 
-### Automatic Weekly Schedule
-- **Day:** Every Friday
-- **Time:** 2:00 AM EST (7:00 AM UTC)
-- **Process:** Fully automated via GitHub Actions
-- **Duration:** ~1-2 minutes total
+**Problem:** Holden Nobody is incorrectly described as a "SHOOT Project legend" with 20 years of experience. He is actually a **rookie rising star**, NOT a legend.
 
-### What Happens Each Week
-1. System loads current state (champions, storylines, match history)
-2. Claude generates shows for all three brands
-3. Tracking files update automatically
-4. Results and archive pages rebuild
-5. Everything deploys to FTP
-6. Content goes live on website
+**Incorrect References:**
+- Roster section: "SHOOT Project legend"
+- Storyline "THE MERCENARY DESTROYER": "legendary career"
+- Storyline "HOLDEN NOBODY'S CHAMPIONSHIP REIGN": "living legend from SHOOT Project"
 
-### No Action Required
-The system runs autonomously. You don't need to do anything unless you want to:
-- Guide storyline direction
-- Make manual booking decisions
-- Update injured/absent wrestlers
-- Add new wrestlers to roster
+**Solution:** Update all references to reflect that he's:
+- A talented rookie
+- A rising star
+- An underdog champion
+- Someone with potential but NOT decades of experience
+
+**Narrative Impact:** This makes the story BETTER - young rookie shocking the world by beating a veteran (Volkov) and now facing a career-ending mercenary (Quincannon). It's a David vs. Goliath story, not legend vs. legend.
 
 ---
 
-## 🛠️ USEFUL COMMANDS
+### 3. Address Repetition Prevention (NOT YET STARTED)
+**Status:** Paused as requested
 
-### Test Mode (Safe Experimentation)
-```bash
-python scripts/generate_shows.py --test
-```
-- Uses `/test-shows` directory
-- Uses `/tracking/test` for tracking
-- **Skips FTP deployment** (won't affect live site)
-- Perfect for testing changes
+**Problem:** Segment titles and storyline beats are repeating across weeks:
+- Week 1 REIGN: "The Mind Games Begin" (Ryan Odyssey opening segment)
+- Week 2 REIGN: "The Mind Games Begin" (Ryan Odyssey opening segment)
 
-### Production Mode (Live Generation)
-```bash
-python scripts/generate_shows.py
-```
-- Uses `/shows` directory
-- Uses `/tracking` for real tracking
-- **Deploys to FTP** (updates live site)
-- Same as GitHub Actions runs
+**Goal:** Each week should feel like episodic television with:
+- Unique segment titles
+- Fresh story beats
+- No repetitive patterns
+- Progression and evolution
 
-### Manual Workflow Trigger
-1. Go to: https://github.com/surreal1st/uwa4/actions
-2. Click "Generate UWA Weekly Shows"
-3. Click "Run workflow" button
-4. Click green "Run workflow" to confirm
-5. Watch the run complete
+**This will be addressed in the next conversation.**
 
 ---
 
-## 🎨 HTML FORMATTING FIXED
+## 🔧 TECHNICAL FIXES NEEDED
 
-### The Issue
-Week 1 initial generation returned plain text without HTML tags, resulting in one giant text block that was hard to read.
+### Files to Update:
+1. **`scripts/generate_shows.py`**
+   - Update `build_combined_html()` method
+   - See: `docs/TEMPLATE_UPDATE_NEEDED.md`
 
-### The Fix
-Enhanced the prompt in `generate_shows.py` with explicit HTML formatting requirements:
-- `<h2>` tags for segment titles
-- `<h3>` tags for subsections
-- `<p>` tags wrapping every paragraph
-- `<strong>` for emphasis
-- `<em>` for dialogue attribution
+2. **`UWA_COMPLETE_GUIDE.md`**
+   - Fix all Holden Nobody references (4 locations)
+   - See: `docs/HOLDEN_NOBODY_FIX.md`
 
-### Result
-Future shows (Week 2+) will automatically have proper HTML formatting. Week 1 was regenerated with correct formatting.
-
----
-
-## 🚀 POTENTIAL NEXT ENHANCEMENTS
-
-These are **optional** improvements you might consider in future conversations:
-
-### High Priority
-1. **Verify Week 1 Quality** - Review the regenerated content
-2. **Monitor Week 2 Generation** - Ensure Friday automation works smoothly
-3. **Results Page Styling** - Enhance visual presentation of weekly results
-
-### Medium Priority
-4. **Championship Change Automation** - Automatically update champions when storylines dictate
-5. **Wrestler Profiles** - Create individual wrestler pages with stats
-6. **RSS Feed** - Add RSS feed for show updates
-7. **Mobile Optimization** - Test and improve mobile experience
-
-### Low Priority
-8. **Social Media Integration** - Auto-post to Twitter/Facebook when shows drop
-9. **Match Rating System** - Track and display match quality metrics
-10. **Fan Interaction** - Consider voting or prediction features
+3. **`scripts/generate_shows.py`** (for repetition prevention - future)
+   - Update prompt to check for repetitive segment titles
+   - Add tracking for segment names used in previous weeks
+   - Implement variation requirements
+   - *Will be addressed after current fixes are complete*
 
 ---
 
-## 📊 TRACKING FILES OVERVIEW
+## 📝 VERIFICATION STEPS AFTER FIXES
 
-### Location: `/tracking/`
+### After Fixing HTML Template:
+1. Regenerate Week 2 (or generate Week 3 in test mode)
+2. Check that the show page has:
+   - ✅ Proper header with UWA logo
+   - ✅ Navigation to Home, About, Results, Archive
+   - ✅ Quick jump buttons (brand-colored)
+   - ✅ Brand headers with logos
+   - ✅ Show metadata display
+   - ✅ Proper content wrappers
 
-**championships.json**
-- Current week number
-- All 15 current champions
-- Defense counts per champion
-- Last updated date
+### After Fixing Holden Nobody:
+1. Regenerate any show with Resistance content
+2. Verify that Holden Nobody is described as:
+   - ✅ A rookie or rising star
+   - ✅ NOT a legend
+   - ✅ Underdog champion
+   - ✅ Young talent facing a veteran destroyer
 
-**match-history.json**
-- Every match ever run
-- Week, brand, participants
-- Winner, method, duration
-- Championship info
-
-**storyline-progression.json**
-- All active storylines (15 total)
-- Next beats for each storyline
-- Priority levels
-- Participants and status
-
-**injuries-absences.json**
-- SHOOT Project protected wrestlers (can't use)
-- Currently injured wrestlers
-- Absences and returns
-
----
-
-## 🐛 KNOWN CONSIDERATIONS
-
-### Championship Changes
-- System logs championship changes in match data
-- **Manual Update Required:** You need to manually update `championships.json` when titles change
-- Future enhancement opportunity for automation
-
-### Week 1 Regeneration
-- Week 1 was regenerated to fix HTML formatting
-- Tracking files were reset to Week 0
-- Content may be slightly different from first generation
-- This is expected and normal
-
-### FTP Deployment
-- Takes ~10-30 seconds depending on file sizes
-- If FTP fails, files still commit to GitHub
-- Can manually re-run deployment if needed
+### After Repetition Prevention (Future):
+1. Generate multiple weeks consecutively
+2. Check segment titles are unique
+3. Verify storyline beats evolve and don't repeat
+4. Confirm each week feels fresh
 
 ---
 
-## 📖 DOCUMENTATION REFERENCE
+## 🗂️ DOCUMENTATION CREATED
 
-### Primary Files
-- **README.md** - Quick start and overview
-- **PROJECT_SPECIFICATION.md** - Complete technical documentation (updated)
-- **UWA_COMPLETE_GUIDE.md** - Roster, storylines, character details
-- **SECRETS_SETUP.md** - GitHub Secrets configuration guide
-- **NEXT_STEPS.md** - This file
+- **`docs/TEMPLATE_UPDATE_NEEDED.md`** - Complete HTML template fix
+- **`docs/HOLDEN_NOBODY_FIX.md`** - Character correction details
 
-### Script Documentation
-- **scripts/PHASE2_README.md** - Results & archive system
-- Comments in all Python scripts
+These documents contain:
+- Exact problem descriptions
+- Line-by-line fixes needed
+- Complete corrected text
+- Rationale for changes
 
 ---
 
-## 🤔 QUESTIONS FOR NEXT CONVERSATION
+## 💡 NEXT CONVERSATION TOPICS
 
-When you return, consider these questions:
+When you return, we should:
 
-1. **Did Week 1 regeneration complete successfully?**
-   - Check GitHub Actions for success
-   - Verify website has properly formatted content
+1. **Verify Fixes Were Applied**
+   - Check if HTML template was updated
+   - Check if Holden Nobody was corrected
 
-2. **How's the content quality?**
-   - Are the shows engaging and well-written?
-   - Do storylines make sense?
-   - Any wrestlers being overused or underused?
+2. **Test Generation**
+   - Run a test generation to see if fixes work
+   - Verify output matches Week 1 formatting
 
-3. **Any adjustments needed?**
-   - Storyline directions you want to guide
-   - Wrestlers you want featured more/less
-   - Championship changes you want to make
+3. **Address Repetition Prevention**
+   - Design system to track used segment titles
+   - Add variation requirements to prompt
+   - Implement freshness checks
 
-4. **Ready for Week 2?**
-   - Should we wait for automatic Friday generation?
-   - Or manually trigger Week 2 for testing?
-
----
-
-## 🎭 WHAT TO EXPECT GOING FORWARD
-
-### Week 2 (November 15, 2025)
-- Will generate automatically Friday morning
-- Should have proper HTML formatting from the start
-- Will continue storylines from Week 1
-- New matches, no repetition from Week 1
-
-### Long-Term Operation
-- System will run every Friday, generating new content
-- Storylines will develop naturally over weeks
-- Championships will be defended regularly
-- Claude will handle all creative decisions unless you intervene
-
-### Your Role
-- **Monitor:** Check that generations complete successfully
-- **Review:** Read the content and provide feedback if desired
-- **Guide:** Make manual storyline decisions if you want
-- **Enjoy:** Watch your automated wrestling promotion grow!
+4. **Deploy and Verify**
+   - Deploy updated files to FTP
+   - Check live site reflects changes
+   - Generate Week 3 (or regenerate Week 2)
 
 ---
 
-## 🚨 IF SOMETHING GOES WRONG
+## 🎭 SYSTEM STATUS
 
-### GitHub Actions Fails
-1. Check the Actions tab for error logs
-2. Common fixes:
-   - Verify API key is still valid
-   - Check FTP credentials haven't changed
-   - Ensure tracking files aren't corrupted
+**Working:**
+- ✅ Weekly generation system
+- ✅ Tracking files (championships, matches, storylines)
+- ✅ FTP deployment
+- ✅ Results and archive page generation
 
-### Content Quality Issues
-1. Review the prompt in `generate_shows.py`
-2. Adjust instructions as needed
-3. Test with `--test` flag before production
+**Needs Fixes:**
+- ⚠️ HTML template in generation script
+- ⚠️ Holden Nobody character description
+- ⚠️ Repetition prevention system (not yet designed)
 
-### Website Not Updating
-1. Check FTP deployment logs in Actions
-2. Verify FTP credentials are correct
-3. Manual deployment: `python scripts/deploy_ftp.py`
-
-### Can't Remember Where Things Are
-1. Read this file (NEXT_STEPS.md)
-2. Check PROJECT_SPECIFICATION.md
-3. Review README.md
+**Ready for Production After Fixes:**
+- HTML template update
+- Character correction
+- Repetition prevention implementation
 
 ---
 
-## ✨ FINAL NOTES
+## 🚀 DEPLOYMENT WORKFLOW
 
-You've built a **fully operational, autonomous wrestling promotion** that generates professional-quality content every week without intervention. The system:
+After fixes are applied:
 
-- ✅ Generates 3 shows weekly (~20-30 minutes total reading)
-- ✅ Maintains story continuity across weeks
-- ✅ Tracks all championships, matches, and storylines
-- ✅ Deploys to live website automatically
-- ✅ Produces properly formatted, readable HTML
-- ✅ Runs on schedule without your involvement
-
-**This is a significant technical and creative achievement!**
-
-The system is designed to run indefinitely, creating an ongoing narrative that develops naturally over time. You can be as hands-on or hands-off as you like.
+1. **Manual Template Fix**: Edit `generate_shows.py` on GitHub
+2. **Manual Character Fix**: Edit `UWA_COMPLETE_GUIDE.md` on GitHub
+3. **Test Generation**: Run `python scripts/generate_shows.py --test`
+4. **Verify Output**: Check test show matches Week 1 format
+5. **Deploy**: Run "Deploy to FTP" workflow
+6. **Live Check**: Verify https://shootproject.com/uwa4/ shows updates
 
 ---
 
-**Welcome back! When you return, we can:**
-1. Verify Week 1 regeneration success
-2. Review content quality
-3. Plan any enhancements
-4. Prepare for Week 2 generation
-5. Or just let it run and check in occasionally!
-
-*The UWA is live and the show must go on! 🎭*
+*Last Updated: November 9, 2025 - Evening*
+*Next Session: Apply documented fixes and address repetition prevention*
