@@ -612,6 +612,62 @@ Begin generation now."""
             print(f"  ⚠ Warning: Could not generate website pages: {e}")
             print("  Continuing without website page generation...")
     
+    def deploy_to_ftp(self):
+        """Deploy files to FTP server (production only)"""
+        if self.test_mode:
+            print("\n⏭️  Skipping FTP deployment (test mode)")
+            return
+        
+        print("\n🚀 Deploying to FTP server...")
+        
+        # Check for FTP credentials
+        ftp_host = os.environ.get('FTP_HOST')
+        ftp_username = os.environ.get('FTP_USERNAME')
+        ftp_password = os.environ.get('FTP_PASSWORD')
+        
+        if not all([ftp_host, ftp_username, ftp_password]):
+            print("  ⚠ FTP credentials not found in environment variables")
+            print("  Skipping FTP deployment")
+            print("  Required: FTP_HOST, FTP_USERNAME, FTP_PASSWORD")
+            return
+        
+        try:
+            # Import FTP deployment module
+            from deploy_ftp import connect_ftp, upload_file, upload_directory
+            
+            # Connect to FTP
+            ftp = connect_ftp()
+            
+            try:
+                # Upload the new show file
+                show_file = f"shows/{self.week_number}.html"
+                if os.path.exists(show_file):
+                    print(f"  📤 Uploading new show: {show_file}")
+                    upload_file(ftp, show_file, show_file)
+                
+                # Upload results.html
+                if os.path.exists("results.html"):
+                    print(f"  📤 Uploading results.html")
+                    upload_file(ftp, "results.html", "results.html")
+                
+                # Upload archive.html
+                if os.path.exists("archive.html"):
+                    print(f"  📤 Uploading archive.html")
+                    upload_file(ftp, "archive.html", "archive.html")
+                
+                print("  ✅ FTP deployment completed successfully!")
+                
+            finally:
+                ftp.quit()
+                print("  🔌 FTP connection closed")
+                
+        except ImportError:
+            print("  ⚠ Could not import deploy_ftp module")
+            print("  Skipping FTP deployment")
+        except Exception as e:
+            print(f"  ⚠ FTP deployment failed: {e}")
+            print("  Continuing without deployment...")
+    
     def run(self):
         """Main execution flow"""
         print("\n" + "="*60)
@@ -632,6 +688,9 @@ Begin generation now."""
         
         # Step 5: Generate website pages
         self.create_html_pages()
+        
+        # Step 6: Deploy to FTP (production only)
+        self.deploy_to_ftp()
         
         print("\n✅ Generation complete!")
         print("="*60 + "\n")
