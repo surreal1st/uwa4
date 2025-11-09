@@ -44,14 +44,6 @@ def connect_ftp():
             try:
                 ftp.cwd(FTP_REMOTE_DIR)
                 print(f"✅ Working in: {FTP_REMOTE_DIR}")
-                # Show current directory contents
-                print(f"📋 Current directory contents:")
-                try:
-                    files = ftp.nlst()
-                    for f in files:
-                        print(f"   - {f}")
-                except:
-                    print("   (empty or cannot list)")
             except ftplib.error_perm:
                 print(f"⚠️  Remote directory doesn't exist, creating: {FTP_REMOTE_DIR}")
                 # Create directory structure
@@ -72,50 +64,60 @@ def connect_ftp():
         print(f"❌ FTP connection failed: {e}")
         sys.exit(1)
 
-def mkdir_recursive(ftp, remote_path):
-    """Create directory structure recursively"""
-    if not remote_path or remote_path == '.' or remote_path == '/':
+def ensure_remote_dir(ftp, remote_path):
+    """Ensure a remote directory exists, creating all parent directories as needed"""
+    if not remote_path or remote_path == '.':
         return
     
-    # Split path and create each level
+    # Get current directory
+    original_dir = ftp.pwd()
+    
+    # Split path into parts
     parts = remote_path.strip('/').split('/')
+    
+    # Create each directory level
     for i, part in enumerate(parts):
         if not part:
             continue
         
-        # Build path up to this level
-        current_path = '/'.join(parts[:i+1])
-        
         try:
-            # Try to change to directory
-            ftp.cwd(current_path)
+            # Try to change into directory
+            ftp.cwd(part)
         except ftplib.error_perm:
             # Directory doesn't exist, create it
             try:
-                ftp.mkd(current_path)
-                print(f"  📁 Created directory: {current_path}")
-            except ftplib.error_perm:
-                # Might already exist
-                pass
+                ftp.mkd(part)
+                print(f"  📁 Created directory: {part}")
+                ftp.cwd(part)
+            except ftplib.error_perm as e:
+                print(f"  ⚠️  Could not create/access directory {part}: {e}")
     
-    # Return to base directory
-    ftp.cwd(FTP_REMOTE_DIR if FTP_REMOTE_DIR != '/' else '/')
+    # Return to original directory
+    ftp.cwd(original_dir)
 
 def upload_file(ftp, local_path, remote_path):
     """Upload a single file to FTP server"""
     try:
         print(f"  📤 Uploading: {local_path} → {remote_path}")
         
-        # Ensure the directory exists
+        # Get directory and filename
         remote_dir = '/'.join(remote_path.split('/')[:-1])
-        if remote_dir:
-            mkdir_recursive(ftp, remote_dir)
-            # Make sure we're in the right directory
-            ftp.cwd(FTP_REMOTE_DIR if FTP_REMOTE_DIR != '/' else '/')
+        remote_filename = remote_path.split('/')[-1]
         
-        # Upload the file
+        # Ensure directory structure exists
+        if remote_dir:
+            ensure_remote_dir(ftp, remote_dir)
+            # Change to the target directory
+            ftp.cwd(FTP_REMOTE_DIR if FTP_REMOTE_DIR != '/' else '/')
+            ftp.cwd(remote_dir)
+        
+        # Upload the file to current directory
         with open(local_path, 'rb') as file:
-            ftp.storbinary(f'STOR {remote_path}', file)
+            ftp.storbinary(f'STOR {remote_filename}', file)
+        
+        # Return to base directory
+        ftp.cwd(FTP_REMOTE_DIR if FTP_REMOTE_DIR != '/' else '/')
+        
         print(f"  ✅ Uploaded successfully: {remote_path}")
         return True
     except Exception as e:
