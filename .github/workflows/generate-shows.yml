@@ -54,10 +54,11 @@ jobs:
         run: |
           python scripts/generate_shows.py
       
-      - name: Commit generated content
+      - name: Commit and push generated content
         run: |
           git add .
           git diff --staged --quiet || git commit -m "🎭 Generate Week ${{ github.run_number }} shows [automated]"
+          git pull --rebase origin main
           git push
       
       - name: Create deployment summary
