@@ -78,29 +78,11 @@ jobs:
             -d '{
               "embeds": [{
                 "title": "🔥 WEEK '"$WEEK_NUMBER"' IS LIVE! 🔥",
-                "description": "The United Wrestling Accord returns with another week of explosive action across all three brands!",
-                "color": 14423100,
-                "fields": [
-                  {
-                    "name": "💪 Resistance: Uprising",
-                    "value": "brought the fight on Monday",
-                    "inline": false
-                  },
-                  {
-                    "name": "🟣 PW:NEO: Paradigm Shift",
-                    "value": "made moves on Wednesday",
-                    "inline": false
-                  },
-                  {
-                    "name": "👑 REIGN: Ascension",
-                    "value": "closed it out on Friday",
-                    "inline": false
-                  }
-                ],
+                "description": "The United Wrestling Accord returns with another week of explosive action across all three brands!\n\n💪 **Resistance: Uprising** brought the fight on Monday\n🟣 **PW:NEO: Paradigm Shift** made moves on Wednesday\n👑 **REIGN: Ascension** closed it out on Friday\n\nThree nights. Three brands. One incredible week of professional wrestling.",
+                "color": 16744192,
                 "footer": {
-                  "text": "Three nights. Three brands. One incredible week of professional wrestling."
-                },
-                "timestamp": "'"$(date -u +%Y-%m-%dT%H:%M:%S.000Z)"'"
+                  "text": "United Wrestling Accord • Reality Check Entertainment • Yesterday at 2:40 PM"
+                }
               }],
               "components": [{
                 "type": 1,
@@ -115,7 +97,7 @@ jobs:
                     "type": 2,
                     "style": 5,
                     "label": "🏠 UWA Home",
-                    "url": "https://shootproject.com/uwa4/"
+                    "url": "https://shootproject.com/uwa4/index.html"
                   }
                 ]
               }]
