@@ -58,8 +58,7 @@ jobs:
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           FTP_PORT: ${{ secrets.FTP_PORT }}
         run: |
-          echo "FTP deployment script will run here"
-          # python scripts/deploy_ftp.py
+          python scripts/deploy_ftp.py
       
       - name: Create deployment summary
         run: |
