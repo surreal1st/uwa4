@@ -22,6 +22,7 @@ The UWA operates three independent wrestling brands under the Reality Check Ente
 - **Philosophy:** Prestige, legacy, championship glory
 - **Style:** Sports entertainment meets athleticism
 - **Tone:** Larger-than-life, cinematic, epic
+- **Brand Color:** Red
 
 ### The Resistance
 - **Show:** Resistance: Uprising  
@@ -30,6 +31,7 @@ The UWA operates three independent wrestling brands under the Reality Check Ente
 - **Philosophy:** Heart, honor, raw physicality
 - **Style:** Pure, old-school professional wrestling
 - **Tone:** Raw, authentic, blue-collar
+- **Brand Color:** Blue
 
 ### PW:NEO
 - **Show:** PW:NEO: Paradigm Shift
@@ -38,8 +40,37 @@ The UWA operates three independent wrestling brands under the Reality Check Ente
 - **Philosophy:** Layered faction warfare, political intrigue
 - **Style:** Cerebral battleground, narrative-driven
 - **Tone:** Intellectual, layered, philosophical
+- **Brand Color:** Purple
 
 **Reality Check Entertainment:** The streaming network that owns all three brands (also owns SHOOT Project)
+
+---
+
+## DESIGN DECISIONS
+
+### Website Design Choice
+**Selected Design:** Option 2 - Modern Sports Clean (Dark Theme Variant)
+
+**Date Chosen:** November 8, 2025
+
+**Design Characteristics:**
+- Contemporary sports network aesthetic adapted to dark theme
+- Card-based layouts with subtle shadows
+- Clean, organized information hierarchy
+- Modern sans-serif typography
+- Smooth hover animations
+- Professional, easy-on-the-eyes dark backgrounds
+
+**Brand Color Scheme:**
+- **REIGN:** Red (primary brand color throughout design)
+- **The Resistance:** Blue (sky blue / cyan tones)
+- **PW:NEO:** Purple (primary brand color throughout design)
+
+**Design Philosophy:**
+Modern sports presentation (ESPN/Fox Sports style) converted to dark mode for comfortable viewing, with brand-specific color accents creating visual distinction while maintaining professional cohesion.
+
+**Rationale:**
+Clean, professional aesthetic appropriate for modern streaming audience while maintaining sports entertainment energy. Dark theme reduces eye strain for extended reading sessions.
 
 ---
 
@@ -176,13 +207,15 @@ The UWA operates three independent wrestling brands under the Reality Check Ente
 ### Design Requirements
 
 **Visual Style:**
+- Dark theme throughout for eye comfort
 - Clean and minimal
 - Professional presentation
-- Must look nice despite simplicity
-- Three design mockup options to be provided
+- Modern sports network aesthetic
 
 **Brand Colors:**
-- Each brand has distinct color scheme
+- REIGN: Red
+- The Resistance: Blue (sky blue / cyan)
+- PW:NEO: Purple
 - Colors carry through website elements
 - Consistent with brand identity
 
@@ -455,15 +488,16 @@ See UWA_COMPLETE_GUIDE.md for detailed storyline breakdowns across all three bra
 
 ## NEXT STEPS FOR IMPLEMENTATION
 
-1. **Design Phase:** Create three HTML/CSS mockup options for website design
-2. **Structure Phase:** Build repository file structure with all necessary folders
-3. **Template Phase:** Create HTML templates for all page types
-4. **Generator Phase:** Build show generation system with Claude API integration
-5. **Tracking Phase:** Implement JSON tracking systems
-6. **Automation Phase:** Create GitHub Actions workflow
-7. **Testing Phase:** Generate sample Week 1 shows to verify format
-8. **Deployment Phase:** Configure FTP deployment with GitHub Secrets
-9. **Launch Phase:** Run first automated generation
+1. ✅ **Design Phase:** Create three HTML/CSS mockup options for website design
+2. ✅ **Design Selection:** Option 2 (Modern Sports Clean - Dark Theme) chosen
+3. **Structure Phase:** Build repository file structure with all necessary folders
+4. **Template Phase:** Create HTML templates for all page types
+5. **Generator Phase:** Build show generation system with Claude API integration
+6. **Tracking Phase:** Implement JSON tracking systems
+7. **Automation Phase:** Create GitHub Actions workflow
+8. **Testing Phase:** Generate sample Week 1 shows to verify format
+9. **Deployment Phase:** Configure FTP deployment with GitHub Secrets
+10. **Launch Phase:** Run first automated generation
 
 ---
 
@@ -488,3 +522,5 @@ See UWA_COMPLETE_GUIDE.md for detailed storyline breakdowns across all three bra
 ---
 
 *This specification represents the complete technical and creative requirements for the UWA4 automated wrestling content generation system as understood on November 8, 2025.*
+
+*Last Updated: November 8, 2025 - Added Design Decisions section*
