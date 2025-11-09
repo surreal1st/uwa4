@@ -62,9 +62,9 @@ The UWA operates three independent wrestling brands under the Reality Check Ente
 - Professional, easy-on-the-eyes dark backgrounds
 
 **Brand Color Scheme:**
-- **REIGN:** Red (primary brand color throughout design)
-- **The Resistance:** Blue (sky blue / cyan tones)
-- **PW:NEO:** Purple (primary brand color throughout design)
+- **REIGN:** Red (#DC143C)
+- **The Resistance:** Blue (#00BFFF)
+- **PW:NEO:** Purple (#9333EA)
 
 **Design Philosophy:**
 Modern sports presentation (ESPN/Fox Sports style) converted to dark mode for comfortable viewing, with brand-specific color accents creating visual distinction while maintaining professional cohesion.
@@ -83,7 +83,7 @@ Clean, professional aesthetic appropriate for modern streaming audience while ma
 **Date Chosen:** November 8, 2025
 
 **Stack Components:**
-- **Frontend:** Static HTML5 with embedded CSS (transitioning to external stylesheet)
+- **Frontend:** Static HTML5 with external stylesheet
 - **Automation:** GitHub Actions (scheduled workflows)
 - **Content Generation:** Claude Sonnet 4.5 via Anthropic API
 - **Data Storage:** JSON files in repository
@@ -114,18 +114,28 @@ Clean, professional aesthetic appropriate for modern streaming audience while ma
    - **Rationale:** Best balance of simplicity and functionality
 
 4. **GitHub Actions for Automation**
-   - Scheduled workflows run Friday 2am EST
+   - Scheduled workflows run Friday 2am EST (7am UTC)
    - Secrets management for credentials
    - Built-in version control
    - Free for public repositories
+   - Manual trigger capability for testing
    - **Rationale:** Integrated with existing GitHub infrastructure
 
-5. **FTP Deployment**
+5. **FTP Deployment Configuration**
    - Direct FTP upload to web server
+   - Configurable remote directory via `FTP_REMOTE_DIR` secret
+   - Automatic directory structure creation
    - Compatible with most hosting providers
    - Simple and reliable
-   - No complex deployment pipeline needed
    - **Rationale:** Universal compatibility and simplicity
+   - **Date Configured:** November 9, 2025
+
+6. **GitHub Actions Permissions**
+   - `permissions: contents: write` for repository commits
+   - Allows workflow to push generated content back to repo
+   - Uses `GITHUB_TOKEN` for authentication
+   - **Rationale:** Enables automated content commits
+   - **Date Configured:** November 9, 2025
 
 **Future Considerations:**
 - Could migrate to Netlify/Vercel for automatic deployments
@@ -139,16 +149,16 @@ Clean, professional aesthetic appropriate for modern streaming audience while ma
 
 ### Automation System
 - **Platform:** GitHub Actions + Claude API integration
-- **Schedule:** Fridays at 2:00 AM EST
+- **Schedule:** Fridays at 2:00 AM EST (7:00 AM UTC)
 - **Process:** Generate all three weekly shows, update tracking files, build website, deploy via FTP
+- **Manual Trigger:** Available via GitHub Actions UI for testing
 
 ### Repository Structure
 ```
 /uwa4
 ├── /assets
-│   ├── /css
-│   │   └── style.css (main stylesheet)
-│   └── /images (brand logos - referenced via URL)
+│   └── /css
+│       └── style.css (main stylesheet)
 ├── /shows
 │   ├── /week-001
 │   │   └── index.html
@@ -160,26 +170,35 @@ Clean, professional aesthetic appropriate for modern streaming audience while ma
 │   ├── storyline-progression.json
 │   ├── championships.json
 │   └── injuries-absences.json
-├── /templates
-│   ├── index-template.html
-│   ├── about-template.html
-│   ├── results-template.html
-│   ├── archive-template.html
-│   └── week-template.html
+├── /scripts
+│   ├── generate_shows.py (to be created)
+│   └── deploy_ftp.py
+├── /design-mockups (reference designs)
 ├── index.html
 ├── about.html
 ├── results.html (updated weekly)
 ├── archive.html (updated weekly)
 ├── UWA_COMPLETE_GUIDE.md (storyline reference)
 ├── PROJECT_SPECIFICATION.md (this file)
+├── SECRETS_SETUP.md (secrets configuration guide)
+├── README.md (repository overview)
 ├── final-design.html (approved design reference)
 └── .github/workflows/generate-shows.yml
 ```
 
 ### Deployment
-- **Method:** FTP to domain
-- **Credentials:** Stored in GitHub Secrets
-- **Files Deployed:** All HTML pages, assets, archived shows
+- **Method:** FTP to configured remote directory
+- **Credentials:** Stored in GitHub Secrets (6 secrets configured)
+- **Files Deployed:** All HTML pages, CSS assets, weekly show directories
+- **Status:** Tested and operational
+
+### GitHub Secrets Configuration
+1. `ANTHROPIC_API_KEY` - Claude API authentication
+2. `FTP_HOST` - FTP server hostname
+3. `FTP_USERNAME` - FTP account username
+4. `FTP_PASSWORD` - FTP account password
+5. `FTP_PORT` - FTP server port (optional, defaults to 21)
+6. `FTP_REMOTE_DIR` - Target directory on server
 
 ---
 
@@ -243,109 +262,80 @@ Clean, professional aesthetic appropriate for modern streaming audience while ma
 
 ## WEBSITE STRUCTURE
 
-### Pages Required
+### Pages Implemented
 
-1. **Index Page (index.html)**
+1. **Index Page (index.html)** ✅
    - Welcome/hero section
    - Latest show highlights
    - Quick links to results and archive
    - Brand logos with descriptions
+   - **Status:** Complete and deployed
 
-2. **About Page (about.html)**
+2. **About Page (about.html)** ✅
    - Explanation of the UWA
    - History of Reality Check Entertainment
    - How the three brands came together
    - Brand philosophies and show schedules
+   - **Status:** Complete and deployed
 
-3. **Results Page (results.html)**
-   - Updated weekly with all three shows
-   - One long page showing all shows in order (Monday, Wednesday, Friday)
-   - Current champions section at top
-   - Business metrics for each show
-   - Note that shows take place M/W/F but page updates Friday
+3. **Results Page (results.html)** ✅
+   - Current champions section
+   - Placeholder for weekly show content
+   - Will be updated weekly by automation
+   - **Status:** Template complete, awaiting show generation
 
-4. **Archive Page (archive.html)**
-   - Single page with links to each week
-   - Format: "Week 1", "Week 2", etc. (newsletter-style)
-   - Links go to individual week pages
+4. **Archive Page (archive.html)** ✅
+   - Links to all past weeks
+   - Will be updated weekly by automation
+   - **Status:** Template complete, awaiting show generation
 
 5. **Individual Week Pages (/shows/week-XXX/index.html)**
+   - To be generated by automation
    - Contains that week's three shows
-   - Preserved exactly as generated
    - Business metrics included
+   - **Status:** Awaiting show generation system
 
-### Design Requirements
+### Design Implementation
 
-**Visual Style:**
-- Dark theme throughout for eye comfort
-- Clean and minimal
-- Professional presentation
+**Visual Style:** ✅ Complete
+- Dark theme throughout (#0f0f0f background)
+- External stylesheet (assets/css/style.css)
+- Responsive mobile-friendly design
 - Modern sports network aesthetic
 
-**Brand Colors:**
+**Brand Colors:** ✅ Implemented
 - REIGN: Red (#DC143C)
 - The Resistance: Blue (#00BFFF)
 - PW:NEO: Purple (#9333EA)
-- Colors carry through website elements
-- Consistent with brand identity
 
-**Logos Referenced (via URL):**
-- PW:NEO: https://sp2025.shootproject.com/uploads/NEO-transparent.png
-- REIGN: https://sp2025.shootproject.com/uploads/REIGN-transparent.png
-- The Resistance: https://sp2025.shootproject.com/uploads/TheResistance-transparent.png
-- UWA: https://sp2025.shootproject.com/uploads/UWA-transparent.png
-- Reality Check Wrestling: https://sp2025.shootproject.com/uploads/RCE-transparent.png
+**Logos:** ✅ Referenced via URL
+- All brand logos loading from sp2025.shootproject.com
 
 ---
 
 ## CONTENT TRACKING SYSTEMS
 
-### Match History
-**Format:** JSON tracking every match
-```json
-{
-  "week": 1,
-  "brand": "REIGN",
-  "match": "Avalanche Anderson vs Ryan Odyssey",
-  "winner": "Ryan Odyssey",
-  "finish": "Submission",
-  "notes": "Non-title match"
-}
-```
+### Tracking Files Initialized
 
-### Storyline Progression
-**Format:** Detailed logs updated after each show generation
-- Current storylines for each brand
-- Priority levels
-- Key developments each week
-- Next planned beats
-- Long-term direction
+1. **championships.json** ✅
+   - All 15 current champions initialized
+   - Tracking structure in place
+   - Ready for weekly updates
 
-### Championships
-**Format:** Current champions with defense history
-```json
-{
-  "title": "REIGN World Championship",
-  "champion": "Avalanche Anderson",
-  "reign_start": "Week 0",
-  "defenses": 0,
-  "next_challenger": "TBD"
-}
-```
+2. **match-history.json** ✅
+   - Empty array ready for match records
+   - Structure defined
 
-### Injuries & Absences
-**Format:** Currently injured/absent wrestlers
-```json
-{
-  "wrestler": "Example Name",
-  "brand": "REIGN",
-  "status": "injured",
-  "return_week": 8,
-  "storyline_reason": "Attacked by faction"
-}
-```
+3. **storyline-progression.json** ✅
+   - All active storylines from UWA_COMPLETE_GUIDE loaded
+   - Priority levels set
+   - Next beats defined
 
-**CRITICAL RULE:** Wrestlers designated as being from SHOOT Project can NEVER be injured in angles. Anyone else is fair game.
+4. **injuries-absences.json** ✅
+   - SHOOT Project wrestlers protected list created
+   - Empty arrays for injuries/absences
+
+**Status:** All tracking systems initialized and ready for automation
 
 ---
 
@@ -492,7 +482,7 @@ Clean, professional aesthetic appropriate for modern streaming audience while ma
 
 ## STARTING POINT DATA
 
-### Current Champions (as of Complete Guide):
+### Current Champions (Week 0):
 - **UWA World Championship:** Avalanche Anderson (REIGN)
 - **REIGN World Championship:** Avalanche Anderson
 - **REIGN Horizon Championship:** Cameron Grayson
@@ -510,7 +500,7 @@ Clean, professional aesthetic appropriate for modern streaming audience while ma
 - **NEO Tag Team Championship:** The Consortium
 
 ### Active Storylines (Priority Order):
-See UWA_COMPLETE_GUIDE.md for detailed storyline breakdowns across all three brands.
+See UWA_COMPLETE_GUIDE.md and tracking/storyline-progression.json for complete details.
 
 **REIGN Top Stories:**
 1. Avalanche Anderson vs Ryan Odyssey (psychological warfare)
@@ -532,50 +522,125 @@ See UWA_COMPLETE_GUIDE.md for detailed storyline breakdowns across all three bra
 ## SUCCESS CRITERIA
 
 ### Technical Success:
-- ✅ Automated generation runs every Friday 2am EST
-- ✅ Website deploys successfully via FTP
-- ✅ All pages load correctly
-- ✅ Archive links work properly
-- ✅ Tracking files update accurately
+- ✅ Automated generation workflow created
+- ✅ Website structure deployed successfully
+- ✅ All pages load correctly with styling
+- ⏳ Archive system ready for weekly updates
+- ✅ Tracking files initialized and structured
 
 ### Content Success:
-- ✅ Each show is 7-10 minutes reading time
-- ✅ Storylines progress logically
-- ✅ No repetitive matchups
-- ✅ Character development occurs naturally
-- ✅ Match variety across brands
-- ✅ Compelling promos and segments
-- ✅ Business metrics fluctuate realistically
+- ⏳ Each show is 7-10 minutes reading time
+- ⏳ Storylines progress logically
+- ⏳ No repetitive matchups
+- ⏳ Character development occurs naturally
+- ⏳ Match variety across brands
+- ⏳ Compelling promos and segments
+- ⏳ Business metrics fluctuate realistically
 
 ### Creative Success:
-- ✅ Unpredictable but logical booking
-- ✅ Long-term storytelling visible
-- ✅ Characters feel distinct and alive
-- ✅ Each brand maintains unique identity
-- ✅ Fans would want to come back next week
+- ⏳ Unpredictable but logical booking
+- ⏳ Long-term storytelling visible
+- ⏳ Characters feel distinct and alive
+- ⏳ Each brand maintains unique identity
+- ⏳ Fans would want to come back next week
 
 ---
 
-## NEXT STEPS FOR IMPLEMENTATION
+## IMPLEMENTATION PROGRESS
 
-1. ✅ **Design Phase:** Create three HTML/CSS mockup options for website design
-2. ✅ **Design Selection:** Option 2 (Modern Sports Clean - Dark Theme) chosen
-3. **Structure Phase:** Build repository file structure with all necessary folders
-4. **Template Phase:** Create HTML templates for all page types
-5. **Generator Phase:** Build show generation system with Claude API integration
-6. **Tracking Phase:** Implement JSON tracking systems
-7. **Automation Phase:** Create GitHub Actions workflow
-8. **Testing Phase:** Generate sample Week 1 shows to verify format
-9. **Deployment Phase:** Configure FTP deployment with GitHub Secrets
-10. **Launch Phase:** Run first automated generation
+### Completed Phases:
+
+1. ✅ **Design Phase** (November 8, 2025)
+   - Three mockup options created
+   - Option 2 (Modern Sports Clean - Dark Theme) selected
+   - Design documented in PROJECT_SPECIFICATION.md
+
+2. ✅ **Structure Phase** (November 8-9, 2025)
+   - Complete repository structure created
+   - All directories and files in place
+   - Assets folder with CSS stylesheet
+
+3. ✅ **Template Phase** (November 8-9, 2025)
+   - index.html - Complete
+   - about.html - Complete
+   - results.html - Template ready
+   - archive.html - Template ready
+   - External stylesheet implemented
+
+4. ✅ **Tracking Phase** (November 9, 2025)
+   - championships.json initialized
+   - match-history.json initialized
+   - storyline-progression.json initialized with all active storylines
+   - injuries-absences.json initialized with SHOOT Project protections
+
+5. ✅ **Automation Phase** (November 9, 2025)
+   - GitHub Actions workflow created
+   - Scheduled for Fridays 2am EST
+   - Manual trigger capability added
+   - Workflow permissions configured
+
+6. ✅ **Deployment Phase** (November 9, 2025)
+   - FTP deployment script created (scripts/deploy_ftp.py)
+   - All 6 GitHub Secrets configured
+   - FTP deployment tested successfully
+   - Website live with core pages and styling
+
+### In Progress:
+
+7. ⏳ **Generator Phase** (Next)
+   - Show generation system (scripts/generate_shows.py)
+   - Claude API integration
+   - Tracking file updates
+   - HTML page generation
+
+### Upcoming:
+
+8. ⏳ **Testing Phase**
+   - Generate sample Week 1 shows
+   - Verify all tracking updates
+   - Test complete workflow end-to-end
+
+9. ⏳ **Launch Phase**
+   - First automated Friday generation
+   - Monitor for issues
+   - Verify website updates correctly
+
+---
+
+## CURRENT STATUS SUMMARY
+
+**Last Updated:** November 9, 2025
+
+**Infrastructure Status:** ✅ COMPLETE
+- Website structure: Deployed and operational
+- CSS styling: Implemented and working
+- FTP deployment: Tested and functional
+- GitHub Actions: Configured and ready
+- Tracking systems: Initialized with starting data
+
+**Remaining Work:** 
+- **Show Generation System** - Primary remaining task
+  - Python script to generate weekly shows
+  - Claude API integration
+  - Tracking file update logic
+  - HTML page building
+  
+**Estimated Completion:** Show generation system is the most complex remaining component. Once built, the entire automation system will be operational.
+
+**Testing Notes:**
+- FTP deployment successfully uploads all files to configured directory
+- Website loads correctly with dark theme styling
+- GitHub Actions workflow triggers successfully
+- All secrets properly configured
 
 ---
 
 ## IMPORTANT NOTES
 
 ### Domain & Credentials:
-- FTP credentials stored in GitHub Secrets
-- Domain information to be provided by user
+- ✅ FTP credentials configured in GitHub Secrets
+- ✅ Remote directory path configured
+- ✅ Deployment tested successfully
 - Never hardcode sensitive information
 
 ### Maintenance:
@@ -591,6 +656,6 @@ See UWA_COMPLETE_GUIDE.md for detailed storyline breakdowns across all three bra
 
 ---
 
-*This specification represents the complete technical and creative requirements for the UWA4 automated wrestling content generation system as understood on November 8, 2025.*
+*This specification represents the complete technical and creative requirements for the UWA4 automated wrestling content generation system.*
 
-*Last Updated: November 8, 2025 - Added Design Decisions and Technical Decisions sections*
+*Last Updated: November 9, 2025 - Updated implementation progress, added deployment status, documented technical decisions for FTP and GitHub Actions configuration*
