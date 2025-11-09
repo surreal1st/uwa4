@@ -360,6 +360,32 @@ nav a.active {
     margin-bottom: 0;
 }
 
+/* Direct H2 spacing for show content (when not using .match/.segment wrappers) */
+.show-content > h2 {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    padding-top: 40px;
+    border-top: 1px solid #2a2a2a;
+}
+
+.show-content > h2:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+}
+
+/* H3 spacing within show content */
+.show-content h3 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+/* Paragraph spacing within show content */
+.show-content p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
 .match-header,
 .segment-header {
     margin-bottom: 20px;
