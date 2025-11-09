@@ -74,6 +74,67 @@ Clean, professional aesthetic appropriate for modern streaming audience while ma
 
 ---
 
+## TECHNICAL DECISIONS
+
+### Technology Stack
+
+**Chosen Stack:** GitHub Actions + Claude API + Static HTML/CSS
+
+**Date Chosen:** November 8, 2025
+
+**Stack Components:**
+- **Frontend:** Static HTML5 with embedded CSS (transitioning to external stylesheet)
+- **Automation:** GitHub Actions (scheduled workflows)
+- **Content Generation:** Claude Sonnet 4.5 via Anthropic API
+- **Data Storage:** JSON files in repository
+- **Deployment:** FTP to web server
+- **Version Control:** Git via GitHub
+
+**Technical Choices:**
+
+1. **Static Site Architecture**
+   - No server-side processing required
+   - Fast page loads
+   - Easy to deploy and maintain
+   - Works with any web hosting
+   - **Rationale:** Simplicity, performance, and universal compatibility
+
+2. **External Stylesheet Strategy**
+   - Single external stylesheet (`/assets/css/style.css`)
+   - All pages reference the same stylesheet
+   - Consistent styling across all pages
+   - Easier maintenance and updates
+   - **Rationale:** DRY principle, maintainability
+
+3. **JSON for Tracking Data**
+   - All tracking files use JSON format
+   - Easily parseable by automation scripts
+   - Human-readable for debugging
+   - Lightweight and efficient
+   - **Rationale:** Best balance of simplicity and functionality
+
+4. **GitHub Actions for Automation**
+   - Scheduled workflows run Friday 2am EST
+   - Secrets management for credentials
+   - Built-in version control
+   - Free for public repositories
+   - **Rationale:** Integrated with existing GitHub infrastructure
+
+5. **FTP Deployment**
+   - Direct FTP upload to web server
+   - Compatible with most hosting providers
+   - Simple and reliable
+   - No complex deployment pipeline needed
+   - **Rationale:** Universal compatibility and simplicity
+
+**Future Considerations:**
+- Could migrate to Netlify/Vercel for automatic deployments
+- Could add RSS feed for show updates
+- Could implement JavaScript for interactive elements
+- System designed to be flexible for future enhancements
+
+---
+
 ## TECHNICAL ARCHITECTURE
 
 ### Automation System
@@ -81,28 +142,37 @@ Clean, professional aesthetic appropriate for modern streaming audience while ma
 - **Schedule:** Fridays at 2:00 AM EST
 - **Process:** Generate all three weekly shows, update tracking files, build website, deploy via FTP
 
-### Repository Structure (Recommended)
+### Repository Structure
 ```
 /uwa4
 ├── /assets
-│   ├── /images (brand logos)
-│   └── /css (stylesheets)
+│   ├── /css
+│   │   └── style.css (main stylesheet)
+│   └── /images (brand logos - referenced via URL)
 ├── /shows
 │   ├── /week-001
+│   │   └── index.html
 │   ├── /week-002
+│   │   └── index.html
 │   └── ... (generated weekly)
 ├── /tracking
 │   ├── match-history.json
 │   ├── storyline-progression.json
 │   ├── championships.json
 │   └── injuries-absences.json
-├── /templates (HTML templates for generation)
+├── /templates
+│   ├── index-template.html
+│   ├── about-template.html
+│   ├── results-template.html
+│   ├── archive-template.html
+│   └── week-template.html
 ├── index.html
 ├── about.html
 ├── results.html (updated weekly)
-├── archive.html
+├── archive.html (updated weekly)
 ├── UWA_COMPLETE_GUIDE.md (storyline reference)
 ├── PROJECT_SPECIFICATION.md (this file)
+├── final-design.html (approved design reference)
 └── .github/workflows/generate-shows.yml
 ```
 
@@ -213,13 +283,13 @@ Clean, professional aesthetic appropriate for modern streaming audience while ma
 - Modern sports network aesthetic
 
 **Brand Colors:**
-- REIGN: Red
-- The Resistance: Blue (sky blue / cyan)
-- PW:NEO: Purple
+- REIGN: Red (#DC143C)
+- The Resistance: Blue (#00BFFF)
+- PW:NEO: Purple (#9333EA)
 - Colors carry through website elements
 - Consistent with brand identity
 
-**Logos Provided:**
+**Logos Referenced (via URL):**
 - PW:NEO: https://sp2025.shootproject.com/uploads/NEO-transparent.png
 - REIGN: https://sp2025.shootproject.com/uploads/REIGN-transparent.png
 - The Resistance: https://sp2025.shootproject.com/uploads/TheResistance-transparent.png
@@ -523,4 +593,4 @@ See UWA_COMPLETE_GUIDE.md for detailed storyline breakdowns across all three bra
 
 *This specification represents the complete technical and creative requirements for the UWA4 automated wrestling content generation system as understood on November 8, 2025.*
 
-*Last Updated: November 8, 2025 - Added Design Decisions section*
+*Last Updated: November 8, 2025 - Added Design Decisions and Technical Decisions sections*
