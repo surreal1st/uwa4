@@ -26,7 +26,7 @@ DEPLOY_FILES = [
 
 DEPLOY_DIRECTORIES = [
     'assets/',  # CSS and other assets
-    'shows/',   # All weekly show directories
+    'shows/',   # All weekly show directories (may not exist yet)
 ]
 
 def connect_ftp():
@@ -44,6 +44,14 @@ def connect_ftp():
             try:
                 ftp.cwd(FTP_REMOTE_DIR)
                 print(f"✅ Working in: {FTP_REMOTE_DIR}")
+                # Show current directory contents
+                print(f"📋 Current directory contents:")
+                try:
+                    files = ftp.nlst()
+                    for f in files:
+                        print(f"   - {f}")
+                except:
+                    print("   (empty or cannot list)")
             except ftplib.error_perm:
                 print(f"⚠️  Remote directory doesn't exist, creating: {FTP_REMOTE_DIR}")
                 # Create directory structure
@@ -64,46 +72,56 @@ def connect_ftp():
         print(f"❌ FTP connection failed: {e}")
         sys.exit(1)
 
-def ensure_remote_directory(ftp, remote_path):
-    """Ensure directory exists on FTP server, creating if necessary"""
-    if not remote_path or remote_path == '.':
+def mkdir_recursive(ftp, remote_path):
+    """Create directory structure recursively"""
+    if not remote_path or remote_path == '.' or remote_path == '/':
         return
     
+    # Split path and create each level
     parts = remote_path.strip('/').split('/')
-    current_path = FTP_REMOTE_DIR if FTP_REMOTE_DIR and FTP_REMOTE_DIR != '/' else ''
-    
-    for part in parts:
+    for i, part in enumerate(parts):
         if not part:
             continue
-        current_path = f"{current_path}/{part}".lstrip('/')
+        
+        # Build path up to this level
+        current_path = '/'.join(parts[:i+1])
+        
         try:
+            # Try to change to directory
             ftp.cwd(current_path)
         except ftplib.error_perm:
+            # Directory doesn't exist, create it
             try:
                 ftp.mkd(current_path)
                 print(f"  📁 Created directory: {current_path}")
-            except ftplib.error_perm as e:
-                # Might already exist or permission issue
+            except ftplib.error_perm:
+                # Might already exist
                 pass
     
     # Return to base directory
-    if FTP_REMOTE_DIR and FTP_REMOTE_DIR != '/':
-        ftp.cwd(FTP_REMOTE_DIR)
+    ftp.cwd(FTP_REMOTE_DIR if FTP_REMOTE_DIR != '/' else '/')
 
 def upload_file(ftp, local_path, remote_path):
     """Upload a single file to FTP server"""
     try:
+        print(f"  📤 Uploading: {local_path} → {remote_path}")
+        
         # Ensure the directory exists
         remote_dir = '/'.join(remote_path.split('/')[:-1])
         if remote_dir:
-            ensure_remote_directory(ftp, remote_dir)
+            mkdir_recursive(ftp, remote_dir)
+            # Make sure we're in the right directory
+            ftp.cwd(FTP_REMOTE_DIR if FTP_REMOTE_DIR != '/' else '/')
         
+        # Upload the file
         with open(local_path, 'rb') as file:
             ftp.storbinary(f'STOR {remote_path}', file)
-        print(f"  ✅ Uploaded: {remote_path}")
+        print(f"  ✅ Uploaded successfully: {remote_path}")
         return True
     except Exception as e:
         print(f"  ❌ Failed to upload {local_path}: {e}")
+        import traceback
+        traceback.print_exc()
         return False
 
 def upload_directory(ftp, local_dir):
@@ -111,19 +129,28 @@ def upload_directory(ftp, local_dir):
     local_path = Path(local_dir)
     
     if not local_path.exists():
-        print(f"  ⚠️  Directory not found: {local_dir}")
+        print(f"  ⚠️  Directory not found, skipping: {local_dir}")
         return
     
-    print(f"  📂 Uploading directory: {local_dir}")
+    if not any(local_path.iterdir()):
+        print(f"  ⚠️  Directory is empty, skipping: {local_dir}")
+        return
+    
+    print(f"\\n  📂 Processing directory: {local_dir}")
     
     # Get all files in directory recursively
+    files_found = False
     for item in local_path.rglob('*'):
         if item.is_file():
+            files_found = True
             # Calculate relative path from repository root
             relative_path = str(item).replace('\\\\', '/')
             
             # Upload file
             upload_file(ftp, str(item), relative_path)
+    
+    if not files_found:
+        print(f"  ℹ️  No files found in: {local_dir}")
 
 def deploy():
     """Main deployment function"""
@@ -138,13 +165,27 @@ def deploy():
         sys.exit(1)
     
     print(f"\\n📍 Target directory: {FTP_REMOTE_DIR or '/ (root)'}")
+    print(f"📍 Current working directory: {os.getcwd()}")
+    
+    # List what we're about to deploy
+    print(f"\\n📋 Files to deploy:")
+    for f in DEPLOY_FILES:
+        exists = "✅" if os.path.exists(f) else "❌"
+        print(f"  {exists} {f}")
+    
+    print(f"\\n📋 Directories to deploy:")
+    for d in DEPLOY_DIRECTORIES:
+        exists = "✅" if os.path.exists(d) else "❌"
+        print(f"  {exists} {d}")
     
     # Connect to FTP
     ftp = connect_ftp()
     
     try:
         # Upload individual files
-        print("\\n📤 Uploading core HTML files...")
+        print("\\n" + "=" * 60)
+        print("📤 UPLOADING CORE HTML FILES")
+        print("=" * 60)
         for file_path in DEPLOY_FILES:
             if os.path.exists(file_path):
                 upload_file(ftp, file_path, file_path)
@@ -152,7 +193,9 @@ def deploy():
                 print(f"  ⚠️  File not found: {file_path}")
         
         # Upload directories
-        print("\\n📤 Uploading directories...")
+        print("\\n" + "=" * 60)
+        print("📤 UPLOADING DIRECTORIES")
+        print("=" * 60)
         for dir_path in DEPLOY_DIRECTORIES:
             upload_directory(ftp, dir_path)
         
@@ -160,6 +203,16 @@ def deploy():
         print("✅ Deployment completed successfully!")
         print(f"🌐 Files deployed to: {FTP_HOST}{FTP_REMOTE_DIR}")
         print("=" * 60)
+        
+        # Show final directory structure
+        print("\\n📋 Final directory contents:")
+        ftp.cwd(FTP_REMOTE_DIR if FTP_REMOTE_DIR != '/' else '/')
+        try:
+            files = ftp.nlst()
+            for f in files:
+                print(f"   - {f}")
+        except:
+            print("   (cannot list)")
         
     except Exception as e:
         print(f"\\n❌ Deployment failed: {e}")
