@@ -276,24 +276,40 @@ PART 1 - JSON DATA (for tracking):
 }}
 </match_data>
 
-PART 2 - HTML CONTENT (for website):
+PART 2 - PROPERLY FORMATTED HTML CONTENT:
+
+CRITICAL HTML FORMATTING REQUIREMENTS:
+- Use <h2> tags for segment titles (e.g., "Opening Segment", "Match 1", "Backstage Segment")
+- Use <h3> tags for wrestler names or match participants
+- Wrap EVERY paragraph in <p></p> tags
+- Use <strong> tags for emphasis on important moments
+- Use <em> tags for spoken dialogue attribution
+- Add proper spacing with line breaks between sections
+- Include <div class="show-metrics"> wrapper for the metrics section at the end
+
+Example HTML structure for reference:
+<h2>Opening Segment: Title Here</h2>
+<p>First paragraph of content goes here.</p>
+<p>Second paragraph continues the narrative.</p>
+
+<h2>Match 1: Wrestler A vs. Wrestler B</h2>
+<h3>Participants: Wrestler A vs. Wrestler B</h3>
+<p>Match description with <strong>key moments</strong> emphasized.</p>
+<p>Continued match narrative in separate paragraphs.</p>
+
 <reign>
-[Full HTML content for REIGN show - complete narrative]
+[Properly formatted HTML content with all tags as described above]
 </reign>
 
 <resistance>
-[Full HTML content for Resistance show - complete narrative]
+[Properly formatted HTML content with all tags as described above]
 </resistance>
 
 <neo>
-[Full HTML content for NEO show - complete narrative]
+[Properly formatted HTML content with all tags as described above]
 </neo>
 
-Each HTML section should be a complete, standalone narrative matching the dark theme website style. Include:
-- Show header with brand name, date, location
-- Match results and narratives
-- Segment descriptions with full dialogue
-- Show metrics at the end
+REMEMBER: Every paragraph must be wrapped in <p> tags. Every section needs proper header tags. This is critical for readability on the website.
 
 Begin generation now."""
 
