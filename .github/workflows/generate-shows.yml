@@ -61,6 +61,67 @@ jobs:
           git pull --rebase origin main
           git push
       
+      - name: Get week number
+        id: week
+        run: |
+          WEEK_NUM=$(python -c "import json; print(json.load(open('tracking/championships.json'))['currentWeek'])")
+          echo "number=$WEEK_NUM" >> $GITHUB_OUTPUT
+      
+      - name: Send Discord notification
+        if: success()
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          WEEK_NUMBER: ${{ steps.week.outputs.number }}
+        run: |
+          curl -H "Content-Type: application/json" \
+            -X POST \
+            -d '{
+              "embeds": [{
+                "title": "🔥 WEEK '"$WEEK_NUMBER"' IS LIVE! 🔥",
+                "description": "The United Wrestling Accord returns with another week of explosive action across all three brands!",
+                "color": 14423100,
+                "fields": [
+                  {
+                    "name": "💪 Resistance: Uprising",
+                    "value": "brought the fight on Monday",
+                    "inline": false
+                  },
+                  {
+                    "name": "🟣 PW:NEO: Paradigm Shift",
+                    "value": "made moves on Wednesday",
+                    "inline": false
+                  },
+                  {
+                    "name": "👑 REIGN: Ascension",
+                    "value": "closed it out on Friday",
+                    "inline": false
+                  }
+                ],
+                "footer": {
+                  "text": "Three nights. Three brands. One incredible week of professional wrestling."
+                },
+                "timestamp": "'"$(date -u +%Y-%m-%dT%H:%M:%S.000Z)"'"
+              }],
+              "components": [{
+                "type": 1,
+                "components": [
+                  {
+                    "type": 2,
+                    "style": 5,
+                    "label": "📺 Watch This Week",
+                    "url": "https://shootproject.com/uwa4/shows/'"$WEEK_NUMBER"'.html"
+                  },
+                  {
+                    "type": 2,
+                    "style": 5,
+                    "label": "🏠 UWA Home",
+                    "url": "https://shootproject.com/uwa4/"
+                  }
+                ]
+              }]
+            }' \
+            "$DISCORD_WEBHOOK"
+      
       - name: Create deployment summary
         run: |
           echo "## 🎭 UWA Weekly Show Generation" >> $GITHUB_STEP_SUMMARY
@@ -70,7 +131,8 @@ jobs:
           echo "✅ Website pages built" >> $GITHUB_STEP_SUMMARY
           echo "✅ Content committed to repository" >> $GITHUB_STEP_SUMMARY
           echo "✅ Deployed to web server via FTP" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Discord notification sent" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Week:** ${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Week:** ${{ steps.week.outputs.number }}" >> $GITHUB_STEP_SUMMARY
           echo "**Timestamp:** $(date -u)" >> $GITHUB_STEP_SUMMARY
           echo "**Branch:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
