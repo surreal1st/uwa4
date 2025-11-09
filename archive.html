@@ -6,10 +6,36 @@
     <title>Archive - United Wrestling Accord</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        /* Additional archive-specific styles */
+        .archive-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .archive-item {
+            margin-bottom: 15px;
+        }
+        
+        .archive-link {
+            display: block;
+            padding: 20px 25px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+        
+        .archive-link:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+        
         .archive-week {
-            font-size: 22px;
-            font-weight: 700;
+            font-size: 20px;
+            font-weight: bold;
             margin-bottom: 8px;
             background: linear-gradient(135deg, #DC143C 0%, #00BFFF 50%, #9333EA 100%);
             -webkit-background-clip: text;
@@ -51,18 +77,26 @@
 
     <section class="content">
         <h1 class="section-title">Show Archive</h1>
-        <p class="section-subtitle">Browse past weeks of UWA action • 1 week(s) archived</p>
+        <p class="section-subtitle">Browse past weeks of UWA action • 2 week(s) archived</p>
         
         <div class="card">
-            <h2 style="margin-bottom: 30px;">All Weeks</h2>
+            <h2>All Weeks</h2>
             <ul class="archive-list">
-                <li>
-                    <a href="shows/1.html">
-                        <div class="archive-week">Week 1</div>
-                        <div class="archive-date">November 09, 2025</div>
-                        <div class="archive-brands">REIGN • Resistance • PW:NEO</div>
-                    </a>
-                </li>
+        <li class="archive-item">
+            <a href="shows/2.html" class="archive-link">
+                <div class="archive-week">Week 2</div>
+                <div class="archive-date">November 09, 2025</div>
+                <div class="archive-brands">REIGN • Resistance • PW:NEO</div>
+            </a>
+        </li>
+        <li class="archive-item">
+            <a href="shows/1.html" class="archive-link">
+                <div class="archive-week">Week 1</div>
+                <div class="archive-date">November 09, 2025</div>
+                <div class="archive-brands">REIGN • Resistance • PW:NEO</div>
+            </a>
+        </li>
+
             </ul>
         </div>
     </section>

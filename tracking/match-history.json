@@ -1,6 +1,6 @@
 {
   "lastUpdated": "2025-11-09",
-  "totalMatches": 13,
+  "totalMatches": 28,
   "matches": [
     {
       "week": 1,
@@ -200,6 +200,233 @@
       "championship": null,
       "championship_change": false,
       "storyline_id": "neo-001"
+    },
+    {
+      "week": 2,
+      "brand": "reign",
+      "date": "2025-11-09",
+      "participants": [
+        "Ryan Odyssey",
+        "Kade Anderson"
+      ],
+      "winner": "Ryan Odyssey",
+      "method": "submission",
+      "duration": "8:34",
+      "championship": null,
+      "championship_change": false,
+      "storyline_id": "reign-001"
+    },
+    {
+      "week": 2,
+      "brand": "reign",
+      "date": "2025-11-09",
+      "participants": [
+        "Cameron Grayson",
+        "Dominic Steele"
+      ],
+      "winner": "Cameron Grayson",
+      "method": "pinfall",
+      "duration": "11:22",
+      "championship": "Horizon Championship",
+      "championship_change": false,
+      "storyline_id": "reign-002"
+    },
+    {
+      "week": 2,
+      "brand": "reign",
+      "date": "2025-11-09",
+      "participants": [
+        "Lexi Gomez",
+        "Phoenix Rayne"
+      ],
+      "winner": "Lexi Gomez",
+      "method": "pinfall",
+      "duration": "9:45",
+      "championship": null,
+      "championship_change": false,
+      "storyline_id": "reign-003"
+    },
+    {
+      "week": 2,
+      "brand": "reign",
+      "date": "2025-11-09",
+      "participants": [
+        "Los Asesinos",
+        "Prime Directive"
+      ],
+      "winner": "Los Asesinos",
+      "method": "pinfall",
+      "duration": "14:17",
+      "championship": "REIGN Tag Team Championship",
+      "championship_change": false,
+      "storyline_id": "reign-004"
+    },
+    {
+      "week": 2,
+      "brand": "reign",
+      "date": "2025-11-09",
+      "participants": [
+        "Avalanche Anderson",
+        "Jett Williams"
+      ],
+      "winner": "Avalanche Anderson",
+      "method": "pinfall",
+      "duration": "13:58",
+      "championship": null,
+      "championship_change": false,
+      "storyline_id": "reign-001"
+    },
+    {
+      "week": 2,
+      "brand": "resistance",
+      "date": "2025-11-09",
+      "participants": [
+        "Pyro",
+        "Silas Black"
+      ],
+      "winner": "Pyro",
+      "method": "pinfall",
+      "duration": "12:03",
+      "championship": null,
+      "championship_change": false,
+      "storyline_id": "resistance-004"
+    },
+    {
+      "week": 2,
+      "brand": "resistance",
+      "date": "2025-11-09",
+      "participants": [
+        "Rosa Guerrera",
+        "Victoria Valencia"
+      ],
+      "winner": "Rosa Guerrera",
+      "method": "pinfall",
+      "duration": "8:45",
+      "championship": null,
+      "championship_change": false,
+      "storyline_id": "resistance-005"
+    },
+    {
+      "week": 2,
+      "brand": "resistance",
+      "date": "2025-11-09",
+      "participants": [
+        "Mike McCoy",
+        "Tommy Flanagan"
+      ],
+      "winner": "Mike McCoy",
+      "method": "submission",
+      "duration": "10:28",
+      "championship": "Resistance Television Championship",
+      "championship_change": false,
+      "storyline_id": "resistance-002"
+    },
+    {
+      "week": 2,
+      "brand": "resistance",
+      "date": "2025-11-09",
+      "participants": [
+        "Los Heroes Enmascarados",
+        "New York Nightmare"
+      ],
+      "winner": "Los Heroes Enmascarados",
+      "method": "pinfall",
+      "duration": "13:22",
+      "championship": null,
+      "championship_change": false,
+      "storyline_id": "resistance-006"
+    },
+    {
+      "week": 2,
+      "brand": "resistance",
+      "date": "2025-11-09",
+      "participants": [
+        "Holden Nobody",
+        "Archer Quincannon"
+      ],
+      "winner": "No Contest",
+      "method": "interference",
+      "duration": "6:15",
+      "championship": null,
+      "championship_change": false,
+      "storyline_id": "resistance-001"
+    },
+    {
+      "week": 2,
+      "brand": "neo",
+      "date": "2025-11-09",
+      "participants": [
+        "Preston Alexander",
+        "Rich Gold"
+      ],
+      "winner": "Preston Alexander",
+      "method": "pinfall",
+      "duration": "9:17",
+      "championship": null,
+      "championship_change": false,
+      "storyline_id": "neo-001"
+    },
+    {
+      "week": 2,
+      "brand": "neo",
+      "date": "2025-11-09",
+      "participants": [
+        "Monica Cruz",
+        "Isabella Ramos"
+      ],
+      "winner": "Monica Cruz",
+      "method": "submission",
+      "duration": "11:34",
+      "championship": "NEO Women's Championship",
+      "championship_change": false,
+      "storyline_id": "neo-002"
+    },
+    {
+      "week": 2,
+      "brand": "neo",
+      "date": "2025-11-09",
+      "participants": [
+        "Dottie Dread",
+        "Samira Atkison"
+      ],
+      "winner": "Dottie Dread",
+      "method": "pinfall",
+      "duration": "10:55",
+      "championship": null,
+      "championship_change": false,
+      "storyline_id": "neo-003"
+    },
+    {
+      "week": 2,
+      "brand": "neo",
+      "date": "2025-11-09",
+      "participants": [
+        "Adam Winters",
+        "Desmond Rich"
+      ],
+      "winner": "Adam Winters",
+      "method": "pinfall",
+      "duration": "12:48",
+      "championship": "NEO Internet Championship",
+      "championship_change": false,
+      "storyline_id": "neo-005"
+    },
+    {
+      "week": 2,
+      "brand": "neo",
+      "date": "2025-11-09",
+      "participants": [
+        "Judge James Morgan",
+        "David Fish",
+        "Isaiah Sherwin Abrams",
+        "Micah Black"
+      ],
+      "winner": "Judge James Morgan",
+      "method": "pinfall",
+      "duration": "16:42",
+      "championship": "NEO World Championship",
+      "championship_change": false,
+      "storyline_id": "neo-002"
     }
   ]
 }
