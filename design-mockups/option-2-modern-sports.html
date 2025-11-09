@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>United Wrestling Accord - Design Option 2: Modern Sports Clean</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .main-logo {
+            height: 50px;
+        }
+
+        .site-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            color: #666;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        nav a:hover {
+            color: #e50914;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #404040 100%);
+            padding: 100px 40px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero .tagline {
+            font-size: 20px;
+            color: #ccc;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Brand Cards */
+        .brands {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #1a1a1a;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+        }
+
+        .brand-card {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .brand-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+        }
+
+        .brand-header {
+            padding: 40px 30px 20px;
+            text-align: center;
+            border-bottom: 3px solid;
+        }
+
+        .brand-card.reign .brand-header {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            border-color: #FFD700;
+        }
+
+        .brand-card.resistance .brand-header {
+            background: linear-gradient(135deg, #00BFFF 0%, #1E90FF 100%);
+            border-color: #00BFFF;
+        }
+
+        .brand-card.neo .brand-header {
+            background: linear-gradient(135deg, #00FF00 0%, #32CD32 100%);
+            border-color: #00FF00;
+        }
+
+        .brand-logo {
+            height: 100px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
+        }
+
+        .brand-header h3 {
+            font-size: 28px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+
+        .brand-body {
+            padding: 30px;
+        }
+
+        .show-name {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .brand-detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .brand-detail:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .detail-value {
+            font-weight: 400;
+            color: #1a1a1a;
+            font-size: 14px;
+        }
+
+        .brand-description {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+            font-size: 15px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Latest Results Section */
+        .latest-results {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+
+        .results-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 50px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .results-card h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .results-card p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #e50914;
+            color: #fff;
+            padding: 16px 48px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            border-radius: 6px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button:hover {
+            background: #b20710;
+            transform: scale(1.05);
+        }
+
+        /* Stats Section */
+        .stats {
+            background: #1a1a1a;
+            padding: 60px 40px;
+            margin-top: 80px;
+        }
+
+        .stats-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 48px;
+            font-weight: 900;
+            color: #e50914;
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            font-size: 16px;
+            color: #ccc;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: #ffffff;
+            padding: 50px 40px;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 0;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-logos {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .footer-logo {
+            height: 50px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .footer-logo:hover {
+            opacity: 1;
+        }
+
+        footer p {
+            color: #999;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .brand-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .brands, .latest-results {
+                padding: 0 20px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="https://sp2025.shootproject.com/uploads/UWA-transparent.png" alt="UWA Logo" class="main-logo">
+                <span class="site-title">UWA</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="results.html">Results</a></li>
+                    <li><a href="archive.html">Archive</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>United Wrestling Accord</h1>
+            <p class="tagline">Experience three unique brands delivering world-class professional wrestling every week on Reality Check Entertainment</p>
+        </div>
+    </section>
+
+    <section class="brands">
+        <h2 class="section-title">Our Brands</h2>
+        <div class="brand-grid">
+            <div class="brand-card reign">
+                <div class="brand-header">
+                    <img src="https://sp2025.shootproject.com/uploads/REIGN-transparent.png" alt="REIGN" class="brand-logo">
+                    <h3>REIGN</h3>
+                </div>
+                <div class="brand-body">
+                    <p class="show-name">REIGN: Ascension</p>
+                    <div class="brand-detail">
+                        <span class="detail-label">Airs</span>
+                        <span class="detail-value">Fridays</span>
+                    </div>
+                    <div class="brand-detail">
+                        <span class="detail-label">Location</span>
+                        <span class="detail-value">Los Angeles, CA</span>
+                    </div>
+                    <div class="brand-detail">
+                        <span class="detail-label">Style</span>
+                        <span class="detail-value">Sports Entertainment</span>
+                    </div>
+                    <p class="brand-description">
+                        REIGN represents prestige, legacy, and championship glory. The flagship brand showcasing larger-than-life stars in spectacular settings.
+                    </p>
+                </div>
+            </div>
+
+            <div class="brand-card resistance">
+                <div class="brand-header">
+                    <img src="https://sp2025.shootproject.com/uploads/TheResistance-transparent.png" alt="The Resistance" class="brand-logo">
+                    <h3>The Resistance</h3>
+                </div>
+                <div class="brand-body">
+                    <p class="show-name">Resistance: Uprising</p>
+                    <div class="brand-detail">
+                        <span class="detail-label">Airs</span>
+                        <span class="detail-value">Mondays</span>
+                    </div>
+                    <div class="brand-detail">
+                        <span class="detail-label">Location</span>
+                        <span class="detail-value">American Northeast</span>
+                    </div>
+                    <div class="brand-detail">
+                        <span class="detail-label">Style</span>
+                        <span class="detail-value">Pure Wrestling</span>
+                    </div>
+                    <p class="brand-description">
+                        The Resistance delivers heart, honor, and raw physicality. Traditional wrestling values meet modern athleticism in authentic competition.
+                    </p>
+                </div>
+            </div>
+
+            <div class="brand-card neo">
+                <div class="brand-header">
+                    <img src="https://sp2025.shootproject.com/uploads/NEO-transparent.png" alt="PW:NEO" class="brand-logo">
+                    <h3>PW:NEO</h3>
+                </div>
+                <div class="brand-body">
+                    <p class="show-name">PW:NEO: Paradigm Shift</p>
+                    <div class="brand-detail">
+                        <span class="detail-label">Airs</span>
+                        <span class="detail-value">Wednesdays</span>
+                    </div>
+                    <div class="brand-detail">
+                        <span class="detail-label">Location</span>
+                        <span class="detail-value">Chicago, IL</span>
+                    </div>
+                    <div class="brand-detail">
+                        <span class="detail-label">Style</span>
+                        <span class="detail-value">Narrative-Driven</span>
+                    </div>
+                    <p class="brand-description">
+                        PW:NEO specializes in faction warfare and political intrigue. Every match tells a story, every decision has consequences.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="latest-results">
+        <div class="results-card">
+            <h2>Latest Results</h2>
+            <p>New shows every Friday featuring all three brands</p>
+            <a href="results.html" class="cta-button">View Results</a>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stats-content">
+            <div class="stat-item">
+                <h3>3</h3>
+                <p>Unique Brands</p>
+            </div>
+            <div class="stat-item">
+                <h3>112</h3>
+                <p>Wrestlers</p>
+            </div>
+            <div class="stat-item">
+                <h3>15</h3>
+                <p>Championships</p>
+            </div>
+            <div class="stat-item">
+                <h3>52</h3>
+                <p>Weeks Per Year</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logos">
+                <img src="https://sp2025.shootproject.com/uploads/RCE-transparent.png" alt="Reality Check Entertainment" class="footer-logo">
+                <img src="https://sp2025.shootproject.com/uploads/UWA-transparent.png" alt="UWA" class="footer-logo">
+            </div>
+            <p>&copy; 2025 United Wrestling Accord. A Reality Check Entertainment Production.</p>
+        </div>
+    </footer>
+</body>
+</html>
