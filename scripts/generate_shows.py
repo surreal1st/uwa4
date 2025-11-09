@@ -8,6 +8,7 @@ import os
 import sys
 import json
 import argparse
+import subprocess
 from datetime import datetime
 from pathlib import Path
 
@@ -613,7 +614,12 @@ Begin generation now."""
             print("  Continuing without website page generation...")
     
     def deploy_to_ftp(self):
-        """Deploy files to FTP server (production only)"""
+        """
+        Deploy files to FTP server (production only)
+        
+        In production mode, calls the deploy_ftp.py script to upload all files.
+        In test mode, this step is automatically skipped.
+        """
         if self.test_mode:
             print("\n⏭️  Skipping FTP deployment (test mode)")
             return
@@ -632,38 +638,32 @@ Begin generation now."""
             return
         
         try:
-            # Import FTP deployment module
-            from deploy_ftp import connect_ftp, upload_file, upload_directory
+            # Call deploy_ftp.py script as subprocess
+            deploy_script = self.repo_root / "scripts" / "deploy_ftp.py"
             
-            # Connect to FTP
-            ftp = connect_ftp()
+            print(f"  📤 Calling deployment script: {deploy_script}")
             
-            try:
-                # Upload the new show file
-                show_file = f"shows/{self.week_number}.html"
-                if os.path.exists(show_file):
-                    print(f"  📤 Uploading new show: {show_file}")
-                    upload_file(ftp, show_file, show_file)
-                
-                # Upload results.html
-                if os.path.exists("results.html"):
-                    print(f"  📤 Uploading results.html")
-                    upload_file(ftp, "results.html", "results.html")
-                
-                # Upload archive.html
-                if os.path.exists("archive.html"):
-                    print(f"  📤 Uploading archive.html")
-                    upload_file(ftp, "archive.html", "archive.html")
-                
+            result = subprocess.run(
+                [sys.executable, str(deploy_script)],
+                cwd=str(self.repo_root),
+                capture_output=True,
+                text=True,
+                timeout=300  # 5 minute timeout
+            )
+            
+            # Print deployment output
+            if result.stdout:
+                print(result.stdout)
+            
+            if result.returncode == 0:
                 print("  ✅ FTP deployment completed successfully!")
-                
-            finally:
-                ftp.quit()
-                print("  🔌 FTP connection closed")
-                
-        except ImportError:
-            print("  ⚠ Could not import deploy_ftp module")
-            print("  Skipping FTP deployment")
+            else:
+                print(f"  ⚠ FTP deployment exited with code {result.returncode}")
+                if result.stderr:
+                    print(f"  Error output: {result.stderr}")
+                    
+        except subprocess.TimeoutExpired:
+            print("  ⚠ FTP deployment timed out after 5 minutes")
         except Exception as e:
             print(f"  ⚠ FTP deployment failed: {e}")
             print("  Continuing without deployment...")
