@@ -1,6 +1,6 @@
 {
   "lastUpdated": "2025-11-09",
-  "currentWeek": 2,
+  "currentWeek": 3,
   "storylines": {
     "reign": [
       {
@@ -18,7 +18,7 @@
         ],
         "startWeek": 0,
         "description": "Ryan Odyssey uses psychological warfare against dual champion Avalanche Anderson",
-        "nextBeat": "Ryan Odyssey's psychological warfare reaches new heights as Anderson's confidence wavers, leading to direct championship confrontation",
+        "nextBeat": "Championship match officially announced between Anderson and Odyssey after champion shows visible psychological vulnerability",
         "longTermDirection": "Title match at PPV"
       },
       {
@@ -35,7 +35,7 @@
         ],
         "startWeek": 0,
         "description": "WOLF MAN seeks rematch after brutal chair attack on champion Cameron Grayson",
-        "nextBeat": "WOLF MAN's interference backfire results in one-on-one Horizon Championship rematch with no outside interference allowed",
+        "nextBeat": "Grayson proves legitimacy as champion in clean victory, WOLF MAN's violent tactics fail",
         "longTermDirection": "Rematch with stipulation"
       },
       {
@@ -53,7 +53,7 @@
         ],
         "startWeek": 0,
         "description": "Dr. Thorne's alliance targets Women's Champion Ivy Knight through psychological manipulation",
-        "nextBeat": "Lexi Gomez officially challenges Ivy Knight for REIGN Women's Championship with Dr. Thorne's strategic advantage",
+        "nextBeat": "Official Women's Championship match set between Ivy Knight and Lexi Gomez with Dr. Thorne in corner",
         "longTermDirection": "Championship match"
       },
       {
@@ -106,7 +106,7 @@
         ],
         "startWeek": 0,
         "description": "XXCW hired mercenary Archer Quincannon to destroy World Champion Holden Nobody",
-        "nextBeat": "Archer Quincannon's brutal message delivered, championship match announced between Nobody and the mercenary destroyer",
+        "nextBeat": "World Championship match officially announced between Nobody and Quincannon after champion proves recovery",
         "longTermDirection": "Championship match"
       },
       {
@@ -164,7 +164,7 @@
         ],
         "startWeek": 0,
         "description": "High-flying cruiserweights create exciting division",
-        "nextBeat": "Pyro earns Television Championship opportunity against Mike McCoy, champion vs champion showdown set",
+        "nextBeat": "Pyro captures Television Championship, McCoy seeks immediate rematch while dealing with XXCW pressure",
         "longTermDirection": "Championship picture development"
       },
       {
@@ -219,7 +219,7 @@
         ],
         "startWeek": 0,
         "description": "XXCW invader Preston Alexander's mysterious agenda creates four-way standoff",
-        "nextBeat": "Preston Alexander asserts himself as legitimate World Championship threat, four-way dynamics intensify with Morgan, Fish, and Abrams",
+        "nextBeat": "Alexander's victory over Gold reveals he's systematically targeting Consortium weakness, Morgan takes notice",
         "longTermDirection": "Multi-person title match"
       },
       {
@@ -285,7 +285,7 @@
         ],
         "startWeek": 0,
         "description": "Awesome AF fights Consortium while maintaining independence",
-        "nextBeat": "Awesome AF celebrates Internet Championship retention while planning expansion of influence",
+        "nextBeat": "Awesome AF as new Tag Champions must defend against multiple Consortium challengers seeking to reclaim power",
         "longTermDirection": "Establish as anti-Consortium force"
       }
     ]

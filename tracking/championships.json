@@ -1,6 +1,6 @@
 {
   "lastUpdated": "2025-11-09",
-  "currentWeek": 2,
+  "currentWeek": 3,
   "champions": {
     "uwa": {
       "title": "UWA World Championship",
@@ -20,7 +20,7 @@
         "title": "Horizon Championship",
         "champion": "Cameron Grayson",
         "reignStart": "Week 0",
-        "defenses": 2
+        "defenses": 3
       },
       {
         "title": "REIGN Women's Championship",
@@ -56,7 +56,7 @@
         "title": "Resistance Television Championship",
         "champion": "Mike McCoy",
         "reignStart": "Week 0",
-        "defenses": 1
+        "defenses": 2
       },
       {
         "title": "Resistance Cruiserweight Championship",
@@ -86,7 +86,7 @@
         "title": "NEO World Championship",
         "champion": "Judge James Morgan",
         "reignStart": "Week 0",
-        "defenses": 1
+        "defenses": 2
       },
       {
         "title": "NEO Internet Championship",
@@ -108,7 +108,7 @@
         ],
         "teamName": "The Consortium",
         "reignStart": "Week 0",
-        "defenses": 0
+        "defenses": 1
       }
     ]
   }
