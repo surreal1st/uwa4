@@ -43,36 +43,33 @@ jobs:
           git config --global user.name 'UWA Automation'
           git config --global user.email 'automation@uwa.local'
       
-      - name: Generate weekly shows
+      - name: Generate weekly shows and deploy
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: |
-          echo "Show generation script will run here"
-          # python scripts/generate_shows.py
-      
-      - name: Commit generated content
-        run: |
-          git add .
-          git diff --staged --quiet || git commit -m "Generate Week ${{ github.run_number }} shows"
-          git push
-      
-      - name: Deploy to FTP
-        env:
           FTP_HOST: ${{ secrets.FTP_HOST }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           FTP_PORT: ${{ secrets.FTP_PORT }}
           FTP_REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR }}
         run: |
-          python scripts/deploy_ftp.py
+          python scripts/generate_shows.py
+      
+      - name: Commit generated content
+        run: |
+          git add .
+          git diff --staged --quiet || git commit -m "🎭 Generate Week ${{ github.run_number }} shows [automated]"
+          git push
       
       - name: Create deployment summary
         run: |
-          echo "## UWA Weekly Show Generation" >> $GITHUB_STEP_SUMMARY
+          echo "## 🎭 UWA Weekly Show Generation" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "✅ Shows generated successfully" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Tracking files updated" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Website pages built" >> $GITHUB_STEP_SUMMARY
           echo "✅ Content committed to repository" >> $GITHUB_STEP_SUMMARY
-          echo "✅ Deployed to web server" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Deployed to web server via FTP" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**Week:** ${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
           echo "**Timestamp:** $(date -u)" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
