@@ -11,6 +11,13 @@ import argparse
 from datetime import datetime
 from pathlib import Path
 
+# Anthropic SDK
+try:
+    from anthropic import Anthropic
+except ImportError:
+    print("ERROR: Anthropic SDK not installed. Run: pip install anthropic")
+    sys.exit(1)
+
 class UWAShowGenerator:
     """Main class for generating UWA weekly shows"""
     
@@ -29,10 +36,12 @@ class UWAShowGenerator:
             print("🧪 Running in TEST MODE")
             self.tracking_dir = self.repo_root / "tracking" / "test"
             self.shows_dir = self.repo_root / "test-shows"
+            self.week_prefix = "TEST"
         else:
             print("🚀 Running in PRODUCTION MODE")
             self.tracking_dir = self.repo_root / "tracking"
             self.shows_dir = self.repo_root / "shows"
+            self.week_prefix = "WEEK"
         
         # Ensure directories exist
         self.tracking_dir.mkdir(parents=True, exist_ok=True)
@@ -43,6 +52,14 @@ class UWAShowGenerator:
         self.match_history = None
         self.injuries = None
         self.storylines = None
+        self.complete_guide = None
+        
+        # Initialize Anthropic client
+        api_key = os.environ.get('ANTHROPIC_API_KEY')
+        if not api_key:
+            print("ERROR: ANTHROPIC_API_KEY environment variable not set")
+            sys.exit(1)
+        self.client = Anthropic(api_key=api_key)
         
     def load_tracking_files(self):
         """Load all tracking JSON files"""
@@ -82,6 +99,16 @@ class UWAShowGenerator:
                 else:
                     print(f"  ✗ ERROR: {filepath} not found!")
                     setattr(self, name, {})
+        
+        # Load UWA Complete Guide
+        guide_path = self.repo_root / "UWA_COMPLETE_GUIDE.md"
+        if guide_path.exists():
+            print(f"  ✓ Loading UWA Complete Guide")
+            with open(guide_path, 'r') as f:
+                self.complete_guide = f.read()
+        else:
+            print(f"  ✗ ERROR: UWA_COMPLETE_GUIDE.md not found!")
+            self.complete_guide = ""
     
     def print_current_state(self):
         """Print current state for verification"""
@@ -144,20 +171,246 @@ class UWAShowGenerator:
         
         print("\n" + "="*60)
     
+    def build_prompt(self, week_number):
+        """Build the comprehensive prompt for Claude"""
+        print("\n📝 Building generation prompt...")
+        
+        # Format current champions
+        champs_text = "CURRENT CHAMPIONS:\n"
+        champs = self.championships.get('champions', {})
+        
+        if 'uwa' in champs:
+            champs_text += f"UWA World: {champs['uwa']['champion']} ({champs['uwa']['brand']})\n"
+        
+        for brand_key, brand_name in [('reign', 'REIGN'), ('resistance', 'Resistance'), ('neo', 'NEO')]:
+            if brand_key in champs:
+                champs_text += f"\n{brand_name}:\n"
+                for title in champs[brand_key]:
+                    if 'teamName' in title:
+                        champs_text += f"  {title['title']}: {title['teamName']}\n"
+                    else:
+                        champs_text += f"  {title['title']}: {title['champion']}\n"
+        
+        # Format active storylines
+        storylines_text = "ACTIVE STORYLINES:\n"
+        storylines_data = self.storylines.get('storylines', {})
+        for brand_key, brand_name in [('reign', 'REIGN'), ('resistance', 'Resistance'), ('neo', 'NEO')]:
+            brand_stories = storylines_data.get(brand_key, [])
+            active_stories = [s for s in brand_stories if s.get('status') == 'active']
+            if active_stories:
+                storylines_text += f"\n{brand_name}:\n"
+                for story in active_stories:
+                    storylines_text += f"  - {story.get('title')}\n"
+                    storylines_text += f"    Next Beat: {story.get('nextBeat')}\n"
+        
+        prompt = f"""You are generating weekly professional wrestling shows for the United Wrestling Accord (UWA). 
+
+IMPORTANT CONTEXT:
+This is Week {week_number} of the Reality Check Entertainment era.
+
+{champs_text}
+
+{storylines_text}
+
+ROSTER AND CHARACTER DETAILS:
+{self.complete_guide}
+
+YOUR TASK:
+Generate shows for all THREE brands in a single response:
+1. REIGN (Los Angeles - Fridays)
+2. The Resistance (Northeast - Mondays)  
+3. PW:NEO (Chicago - Wednesdays)
+
+REQUIREMENTS FOR EACH BRAND'S SHOW:
+
+**Content Structure:**
+- 4-6 matches per show
+- 1-2 segments between matches (promos, backstage interviews, confrontations)
+- Each match should advance at least one active storyline
+- Include full promo dialogue in quotation marks
+- Write in narrative prose style (like reading a wrestling newsletter)
+- 7-10 minute read length per brand
+
+**Match Variety:**
+- Mix of singles, tag team, and multi-person matches
+- Vary match types (regular, championship, non-title, etc.)
+- Feature different wrestlers each week - avoid repetitive bookings
+- Give development time to new/unbooked wrestlers occasionally
+
+**Show Metrics** (realistic for each brand's venue):
+- Attendance (venue capacity range)
+- Gate revenue (based on ticket prices and attendance)
+- TV rating (Nielsen rating for the timeslot)
+
+**OUTPUT FORMAT:**
+Return your response as THREE separate HTML sections that I will combine:
+
+<reign>
+[Full HTML content for REIGN show - complete narrative]
+</reign>
+
+<resistance>
+[Full HTML content for Resistance show - complete narrative]
+</resistance>
+
+<neo>
+[Full HTML content for NEO show - complete narrative]
+</neo>
+
+Each HTML section should be a complete, standalone narrative matching the dark theme website style. Include:
+- Show header with brand name, date, location
+- Match results and narratives
+- Segment descriptions with full dialogue
+- Show metrics at the end
+
+Begin generation now."""
+
+        return prompt
+    
     def generate_shows(self):
-        """Generate all three brand shows (placeholder for now)"""
-        print("\n🎬 Generating shows...")
-        print("  (This will call Claude API in the next step)")
+        """Generate all three brand shows using Claude API"""
+        print("\n🎬 Generating shows via Claude API...")
+        
+        # Determine week number
+        current_week = self.championships.get('currentWeek', 0)
+        next_week = current_week + 1
+        
+        if self.test_mode:
+            week_number = f"{self.week_prefix}-{next_week:03d}"
+        else:
+            week_number = next_week
+        
+        print(f"  Generating for: {week_number}")
+        
+        # Build prompt
+        prompt = self.build_prompt(week_number)
+        
+        print(f"  Calling Claude API (model: claude-sonnet-4-20250514)...")
+        print(f"  This may take 30-60 seconds...")
+        
+        try:
+            # Call Claude API
+            message = self.client.messages.create(
+                model="claude-sonnet-4-20250514",
+                max_tokens=16000,
+                messages=[
+                    {"role": "user", "content": prompt}
+                ]
+            )
+            
+            response_text = message.content[0].text
+            print(f"  ✓ Received response ({len(response_text)} characters)")
+            
+            # Save raw response for debugging
+            debug_file = self.shows_dir / f"{week_number}_raw_response.txt"
+            with open(debug_file, 'w') as f:
+                f.write(response_text)
+            print(f"  ✓ Saved raw response to {debug_file}")
+            
+            # Parse the response to extract each brand's HTML
+            self.parse_and_save_shows(response_text, week_number)
+            
+        except Exception as e:
+            print(f"  ✗ ERROR calling Claude API: {e}")
+            raise
+        
+    def parse_and_save_shows(self, response_text, week_number):
+        """Parse Claude's response and save individual brand shows"""
+        print("\n📄 Parsing and saving show files...")
+        
+        # Extract each brand's HTML
+        import re
+        
+        # Find REIGN show
+        reign_match = re.search(r'<reign>(.*?)</reign>', response_text, re.DOTALL)
+        resistance_match = re.search(r'<resistance>(.*?)</resistance>', response_text, re.DOTALL)
+        neo_match = re.search(r'<neo>(.*?)</neo>', response_text, re.DOTALL)
+        
+        if not all([reign_match, resistance_match, neo_match]):
+            print("  ✗ ERROR: Could not find all three brand sections in response")
+            print(f"  REIGN found: {bool(reign_match)}")
+            print(f"  Resistance found: {bool(resistance_match)}")
+            print(f"  NEO found: {bool(neo_match)}")
+            return
+        
+        shows = {
+            'REIGN': reign_match.group(1).strip(),
+            'Resistance': resistance_match.group(1).strip(),
+            'NEO': neo_match.group(1).strip()
+        }
+        
+        # Save combined show file
+        combined_html = self.build_combined_html(shows, week_number)
+        show_file = self.shows_dir / f"{week_number}.html"
+        
+        with open(show_file, 'w') as f:
+            f.write(combined_html)
+        
+        print(f"  ✓ Saved combined show: {show_file}")
+        
+    def build_combined_html(self, shows, week_number):
+        """Combine all three brand shows into one HTML file"""
+        
+        html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UWA Week {week_number} - All Shows</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>United Wrestling Accord</h1>
+            <p>Week {week_number} - All Three Brand Shows</p>
+        </header>
+        
+        <nav>
+            <a href="#reign">REIGN</a>
+            <a href="#resistance">Resistance</a>
+            <a href="#neo">PW:NEO</a>
+        </nav>
+        
+        <section id="reign" class="brand-show">
+            <div class="brand-header reign-brand">
+                <h2>REIGN</h2>
+            </div>
+            {shows['REIGN']}
+        </section>
+        
+        <section id="resistance" class="brand-show">
+            <div class="brand-header resistance-brand">
+                <h2>The Resistance</h2>
+            </div>
+            {shows['Resistance']}
+        </section>
+        
+        <section id="neo" class="brand-show">
+            <div class="brand-header neo-brand">
+                <h2>PW:NEO</h2>
+            </div>
+            {shows['NEO']}
+        </section>
+        
+        <footer>
+            <p>&copy; 2025 United Wrestling Accord - A Reality Check Entertainment Production</p>
+        </footer>
+    </div>
+</body>
+</html>"""
+        
+        return html
         
     def update_tracking_files(self):
         """Update all tracking files after show generation (placeholder)"""
         print("\n💾 Updating tracking files...")
-        print("  (This will update JSON files in the next step)")
+        print("  (Will parse matches and update tracking in next step)")
         
     def create_html_pages(self):
         """Create results.html and archive pages (placeholder)"""
         print("\n📄 Creating HTML pages...")
-        print("  (This will create HTML files in the next step)")
+        print("  (Will create results.html and archive in next step)")
     
     def run(self):
         """Main execution flow"""
@@ -171,7 +424,7 @@ class UWAShowGenerator:
         # Step 2: Print current state
         self.print_current_state()
         
-        # Step 3: Generate shows (placeholder)
+        # Step 3: Generate shows
         self.generate_shows()
         
         # Step 4: Update tracking (placeholder)
