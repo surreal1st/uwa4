@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2025-11-08",
-  "currentWeek": 0,
+  "lastUpdated": "2025-11-09",
+  "currentWeek": 2,
   "champions": {
     "uwa": {
       "title": "UWA World Championship",
@@ -20,13 +20,13 @@
         "title": "Horizon Championship",
         "champion": "Cameron Grayson",
         "reignStart": "Week 0",
-        "defenses": 0
+        "defenses": 1
       },
       {
         "title": "REIGN Women's Championship",
         "champion": "Ivy Knight",
         "reignStart": "Week 0",
-        "defenses": 0
+        "defenses": 1
       },
       {
         "title": "DeathKore Championship",
@@ -39,7 +39,7 @@
         "champions": ["Mordida de Escarcha", "Sangre Fria"],
         "teamName": "Los Asesinos",
         "reignStart": "Week 0",
-        "defenses": 0
+        "defenses": 1
       }
     ],
     "resistance": [
@@ -53,7 +53,7 @@
         "title": "Resistance Television Championship",
         "champion": "Mike McCoy",
         "reignStart": "Week 0",
-        "defenses": 0
+        "defenses": 1
       },
       {
         "title": "Resistance Cruiserweight Championship",
@@ -65,14 +65,14 @@
         "title": "Resistance Women's Championship",
         "champion": "Mia Taylor",
         "reignStart": "Week 0",
-        "defenses": 0
+        "defenses": 1
       },
       {
         "title": "Resistance Tag Team Championship",
         "champions": ["Southern Rebel #1", "Southern Rebel #2"],
         "teamName": "The Southern Rebels",
         "reignStart": "Week 0",
-        "defenses": 0
+        "defenses": 1
       }
     ],
     "neo": [
@@ -80,13 +80,13 @@
         "title": "NEO World Championship",
         "champion": "Judge James Morgan",
         "reignStart": "Week 0",
-        "defenses": 0
+        "defenses": 1
       },
       {
         "title": "NEO Internet Championship",
         "champion": "Adam Winters",
         "reignStart": "Week 0",
-        "defenses": 0
+        "defenses": 1
       },
       {
         "title": "NEO Women's Championship",
