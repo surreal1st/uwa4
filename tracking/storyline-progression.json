@@ -1,6 +1,6 @@
 {
   "lastUpdated": "2025-11-09",
-  "currentWeek": 0,
+  "currentWeek": 1,
   "storylines": {
     "reign": [
       {
@@ -18,7 +18,7 @@
         ],
         "startWeek": 0,
         "description": "Ryan Odyssey uses psychological warfare against dual champion Avalanche Anderson",
-        "nextBeat": "Ryan Odyssey continues mind games with Anderson, setting up inevitable confrontation",
+        "nextBeat": "Ryan Odyssey escalates mind games by directly confronting Anderson, setting up championship match",
         "longTermDirection": "Title match at PPV"
       },
       {
@@ -35,7 +35,7 @@
         ],
         "startWeek": 0,
         "description": "WOLF MAN seeks rematch after brutal chair attack on champion Cameron Grayson",
-        "nextBeat": "WOLF MAN interferes in Grayson's next title defense, escalating tension",
+        "nextBeat": "WOLF MAN's failed interference leads to one-on-one rematch stipulation for Horizon Championship",
         "longTermDirection": "Rematch with stipulation"
       },
       {
@@ -53,7 +53,7 @@
         ],
         "startWeek": 0,
         "description": "Dr. Thorne's alliance targets Women's Champion Ivy Knight through psychological manipulation",
-        "nextBeat": "Lexi Gomez showcases improved skills under Dr. Thorne's guidance",
+        "nextBeat": "Dr. Thorne's guidance pays off as Lexi Gomez earns Women's Championship opportunity",
         "longTermDirection": "Championship match"
       },
       {
@@ -70,7 +70,7 @@
         ],
         "startWeek": 0,
         "description": "Champions Los Asesinos face rising challengers in competitive division",
-        "nextBeat": "Los Asesinos defend titles against up-and-coming team",
+        "nextBeat": "Prime Directive earns rematch after strong showing, other teams take notice of champions' vulnerability",
         "longTermDirection": "Championship chase"
       },
       {
@@ -86,7 +86,7 @@
         "championships": [],
         "startWeek": 0,
         "description": "Accord Initiative rookies develop through competitive matches",
-        "nextBeat": "Showcase match between Accord Initiative members",
+        "nextBeat": "Jett Williams seeks opportunity to prove himself against Kade Anderson's winning streak",
         "longTermDirection": "Development arc"
       }
     ],
@@ -106,7 +106,7 @@
         ],
         "startWeek": 0,
         "description": "XXCW hired mercenary Archer Quincannon to destroy World Champion Holden Nobody",
-        "nextBeat": "Quincannon's brutal attack on champion during match sets up showdown",
+        "nextBeat": "Archer Quincannon appears to deliver brutal message to weakened Holden Nobody",
         "longTermDirection": "Championship match"
       },
       {
@@ -128,7 +128,7 @@
         ],
         "startWeek": 0,
         "description": "XXCW faction attempts complete hostile takeover of The Resistance",
-        "nextBeat": "XXCW members dominate matches while Resistance loyalists unite",
+        "nextBeat": "XXCW regroups after major loss, plans coordinated response to Resistance unity",
         "longTermDirection": "War with Resistance loyalists"
       },
       {
@@ -146,7 +146,7 @@
         ],
         "startWeek": 0,
         "description": "Women's Champion Mia Taylor seeks revenge after brutal XXCW attack",
-        "nextBeat": "Mia Taylor returns from injury to confront McCoy",
+        "nextBeat": "Mia Taylor makes surprise return to confront Mike McCoy after his dominant victory",
         "longTermDirection": "Revenge matches"
       },
       {
@@ -157,14 +157,14 @@
         "participants": [
           "Pyro",
           "Silver Cometa",
-          "El Halcón Dorado"
+          "El Halc\u00f3n Dorado"
         ],
         "championships": [
           "Resistance Cruiserweight Championship"
         ],
         "startWeek": 0,
         "description": "High-flying cruiserweights create exciting division",
-        "nextBeat": "Cruiserweight showcase match featuring technical excellence",
+        "nextBeat": "Pyro's strong performance leads to Television Championship challenge opportunity",
         "longTermDirection": "Championship picture development"
       },
       {
@@ -180,7 +180,7 @@
         "championships": [],
         "startWeek": 0,
         "description": "Competitive women's division builds towards championship opportunities",
-        "nextBeat": "Women's division match to establish contenders",
+        "nextBeat": "Rosa Guerrera and Jasmine Cruz's impressive debuts create new Women's Championship contenders",
         "longTermDirection": "Title contenders emerge"
       },
       {
@@ -192,13 +192,13 @@
           "Holden Nobody",
           "Pyro",
           "Silver Cometa",
-          "El Halcón Dorado",
+          "El Halc\u00f3n Dorado",
           "Alexa Valdez"
         ],
         "championships": [],
         "startWeek": 0,
         "description": "Resistance loyalists unite against XXCW invasion",
-        "nextBeat": "Resistance loyalists publicly unite against XXCW",
+        "nextBeat": "Empowered Resistance loyalists plan coordinated campaign against XXCW championship holders",
         "longTermDirection": "Fight back against takeover"
       }
     ],
@@ -219,7 +219,7 @@
         ],
         "startWeek": 0,
         "description": "XXCW invader Preston Alexander's mysterious agenda creates four-way standoff",
-        "nextBeat": "Alexander proves he belongs in main event with shocking victory",
+        "nextBeat": "Preston Alexander's shocking victory puts him in World Championship conversation, creating four-way tension",
         "longTermDirection": "Multi-person title match"
       },
       {
@@ -235,7 +235,7 @@
         ],
         "startWeek": 0,
         "description": "NEO World Champion maintains authoritarian control through Consortium",
-        "nextBeat": "Morgan defends championship while facing multiple threats",
+        "nextBeat": "Judge Morgan must address multiple championship threats while maintaining Consortium control",
         "longTermDirection": "Face multiple threats"
       },
       {
@@ -252,7 +252,7 @@
         "championships": [],
         "startWeek": 0,
         "description": "Ideological war between order (Consortium) and chaos (Red Letter Society)",
-        "nextBeat": "Faction warfare escalates with direct confrontation",
+        "nextBeat": "Red Letter Society momentum leads to direct challenge of Consortium's championship dominance",
         "longTermDirection": "Control of PW:NEO"
       },
       {
@@ -268,7 +268,7 @@
         "championships": [],
         "startWeek": 0,
         "description": "Some Consortium members face confidence issues and losing streaks",
-        "nextBeat": "Rich Gold's losing streak continues, creating internal tension",
+        "nextBeat": "Rich Gold's continued failures force Judge Morgan to make difficult decision about his status",
         "longTermDirection": "Potential faction split"
       },
       {
@@ -285,7 +285,7 @@
         ],
         "startWeek": 0,
         "description": "Awesome AF fights Consortium while maintaining independence",
-        "nextBeat": "Internet Championship defense against Consortium challenger",
+        "nextBeat": "Awesome AF celebrates Internet Championship retention while planning expansion of influence",
         "longTermDirection": "Establish as anti-Consortium force"
       }
     ]

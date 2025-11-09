@@ -1,6 +1,6 @@
 {
   "lastUpdated": "2025-11-09",
-  "currentWeek": 0,
+  "currentWeek": 1,
   "champions": {
     "uwa": {
       "title": "UWA World Championship",
@@ -20,7 +20,7 @@
         "title": "Horizon Championship",
         "champion": "Cameron Grayson",
         "reignStart": "Week 0",
-        "defenses": 0
+        "defenses": 1
       },
       {
         "title": "REIGN Women's Championship",
@@ -42,7 +42,7 @@
         ],
         "teamName": "Los Asesinos",
         "reignStart": "Week 0",
-        "defenses": 0
+        "defenses": 1
       }
     ],
     "resistance": [
@@ -92,7 +92,7 @@
         "title": "NEO Internet Championship",
         "champion": "Adam Winters",
         "reignStart": "Week 0",
-        "defenses": 0
+        "defenses": 1
       },
       {
         "title": "NEO Women's Championship",
