@@ -29,7 +29,17 @@ The automation workflow requires the following secrets to be configured in your 
 - **Format:** Your FTP account password
 - **Security:** Never commit this to the repository!
 
-### 5. FTP_PORT (Optional)
+### 5. FTP_REMOTE_DIR
+- **Purpose:** Target directory on FTP server where files should be deployed
+- **Format:** Path starting with `/` (forward slash)
+- **Examples:** 
+  - `/public_html/uwa` - Deploy to /public_html/uwa folder
+  - `/www/wrestling` - Deploy to /www/wrestling folder
+  - `/uwa4` - Deploy to /uwa4 folder
+  - `/` - Deploy to root directory (default if not set)
+- **Important:** Use forward slashes `/` not backslashes `\`
+
+### 6. FTP_PORT (Optional)
 - **Purpose:** FTP server port number
 - **Default:** `21` (standard FTP port)
 - **Format:** Numeric port number
@@ -65,13 +75,27 @@ Once all secrets are configured, you can test the workflow:
 You cannot view secret values after they're saved (for security), but you can verify they exist:
 
 1. Go to **Settings** → **Secrets and variables** → **Actions**
-2. You should see all five secret names listed
+2. You should see all six secret names listed
 3. Each should show "Updated X time ago"
+
+## Common FTP_REMOTE_DIR Examples
+
+### cPanel Hosting
+- **Public HTML:** `/public_html/uwa`
+- **Subdomain:** `/public_html/subdomain_name`
+
+### Plesk Hosting
+- **httpdocs:** `/httpdocs/uwa`
+- **Subdomain:** `/httpdocs/subdomain_name`
+
+### Custom Setup
+- Ask your hosting provider: "What is the full path to my web root directory?"
+- Add `/uwa` or your preferred folder name to the end
 
 ## Troubleshooting
 
 ### If the workflow fails with "Missing FTP credentials":
-- Verify all FTP secrets (FTP_HOST, FTP_USERNAME, FTP_PASSWORD) are set
+- Verify all required FTP secrets (FTP_HOST, FTP_USERNAME, FTP_PASSWORD, FTP_REMOTE_DIR) are set
 - Check for typos in secret names (they're case-sensitive)
 
 ### If Claude API calls fail:
@@ -83,6 +107,13 @@ You cannot view secret values after they're saved (for security), but you can ve
 - Test FTP credentials manually using an FTP client
 - Verify FTP_HOST is accessible from GitHub Actions (some hosts block cloud IPs)
 - Check FTP_PORT if using non-standard port
+- Verify FTP_REMOTE_DIR path is correct (must start with `/`)
+- Check that the FTP user has write permissions to FTP_REMOTE_DIR
+
+### If files deploy but website doesn't work:
+- Verify FTP_REMOTE_DIR points to your web-accessible directory
+- Check that your web server is configured to serve from that directory
+- Ensure index.html is being served correctly
 
 ## Security Notes
 
@@ -96,7 +127,7 @@ You cannot view secret values after they're saved (for security), but you can ve
 
 After configuring secrets:
 
-1. ✅ Verify all 5 secrets are configured
+1. ✅ Verify all 6 secrets are configured
 2. ⏳ Test manual workflow trigger
 3. ⏳ Verify FTP deployment works
 4. ⏳ Wait for first scheduled run (Friday 2am EST)
