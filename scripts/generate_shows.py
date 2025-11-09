@@ -54,6 +54,10 @@ class UWAShowGenerator:
         self.storylines = None
         self.complete_guide = None
         
+        # Store generated data
+        self.generated_matches = None
+        self.week_number = None
+        
         # Initialize Anthropic client
         api_key = os.environ.get('ANTHROPIC_API_KEY')
         if not api_key:
@@ -200,7 +204,7 @@ class UWAShowGenerator:
             if active_stories:
                 storylines_text += f"\n{brand_name}:\n"
                 for story in active_stories:
-                    storylines_text += f"  - {story.get('title')}\n"
+                    storylines_text += f"  - {story.get('title')} (ID: {story.get('id')})\n"
                     storylines_text += f"    Next Beat: {story.get('nextBeat')}\n"
         
         prompt = f"""You are generating weekly professional wrestling shows for the United Wrestling Accord (UWA). 
@@ -225,7 +229,7 @@ REQUIREMENTS FOR EACH BRAND'S SHOW:
 
 **Content Structure:**
 - 4-6 matches per show
-- 1-2 segments between matches (promos, backstage interviews, confrontations)
+- 3-4 segments between matches (promos, backstage interviews, confrontations)
 - Each match should advance at least one active storyline
 - Include full promo dialogue in quotation marks
 - Write in narrative prose style (like reading a wrestling newsletter)
@@ -243,8 +247,35 @@ REQUIREMENTS FOR EACH BRAND'S SHOW:
 - TV rating (Nielsen rating for the timeslot)
 
 **OUTPUT FORMAT:**
-Return your response as THREE separate HTML sections that I will combine:
+Return your response in TWO parts:
 
+PART 1 - JSON DATA (for tracking):
+<match_data>
+{{
+  "reign": [
+    {{
+      "participants": ["Wrestler A", "Wrestler B"],
+      "winner": "Wrestler A",
+      "method": "pinfall/submission/countout/dq",
+      "duration": "12:45",
+      "championship": "REIGN World Championship" (or null if non-title),
+      "championship_change": false,
+      "storyline_id": "reign-001",
+      "storyline_advancement": "Brief description of how storyline progressed"
+    }}
+  ],
+  "resistance": [...],
+  "neo": [...],
+  "storyline_updates": [
+    {{
+      "storyline_id": "reign-001",
+      "new_next_beat": "Updated next beat based on what happened this week"
+    }}
+  ]
+}}
+</match_data>
+
+PART 2 - HTML CONTENT (for website):
 <reign>
 [Full HTML content for REIGN show - complete narrative]
 </reign>
@@ -276,14 +307,14 @@ Begin generation now."""
         next_week = current_week + 1
         
         if self.test_mode:
-            week_number = f"{self.week_prefix}-{next_week:03d}"
+            self.week_number = f"{self.week_prefix}-{next_week:03d}"
         else:
-            week_number = next_week
+            self.week_number = next_week
         
-        print(f"  Generating for: {week_number}")
+        print(f"  Generating for: {self.week_number}")
         
         # Build prompt
-        prompt = self.build_prompt(week_number)
+        prompt = self.build_prompt(self.week_number)
         
         print(f"  Calling Claude API (model: claude-sonnet-4-20250514)...")
         print(f"  This may take 30-60 seconds...")
@@ -302,26 +333,43 @@ Begin generation now."""
             print(f"  ✓ Received response ({len(response_text)} characters)")
             
             # Save raw response for debugging
-            debug_file = self.shows_dir / f"{week_number}_raw_response.txt"
+            debug_file = self.shows_dir / f"{self.week_number}_raw_response.txt"
             with open(debug_file, 'w') as f:
                 f.write(response_text)
             print(f"  ✓ Saved raw response to {debug_file}")
             
-            # Parse the response to extract each brand's HTML
-            self.parse_and_save_shows(response_text, week_number)
+            # Parse the response to extract match data and HTML
+            self.parse_response(response_text)
             
         except Exception as e:
             print(f"  ✗ ERROR calling Claude API: {e}")
             raise
+    
+    def parse_response(self, response_text):
+        """Parse Claude's response to extract JSON data and HTML"""
+        print("\n📄 Parsing response...")
         
-    def parse_and_save_shows(self, response_text, week_number):
-        """Parse Claude's response and save individual brand shows"""
-        print("\n📄 Parsing and saving show files...")
-        
-        # Extract each brand's HTML
         import re
         
-        # Find REIGN show
+        # Extract match data JSON
+        match_data_match = re.search(r'<match_data>(.*?)</match_data>', response_text, re.DOTALL)
+        if match_data_match:
+            try:
+                match_data_str = match_data_match.group(1).strip()
+                # Remove markdown code blocks if present
+                match_data_str = re.sub(r'```json\s*', '', match_data_str)
+                match_data_str = re.sub(r'```\s*', '', match_data_str)
+                self.generated_matches = json.loads(match_data_str)
+                print(f"  ✓ Parsed match data JSON")
+            except json.JSONDecodeError as e:
+                print(f"  ✗ ERROR parsing match data JSON: {e}")
+                print(f"  Raw match data: {match_data_str[:200]}...")
+                self.generated_matches = None
+        else:
+            print("  ⚠ No match data found in response")
+            self.generated_matches = None
+        
+        # Extract HTML sections
         reign_match = re.search(r'<reign>(.*?)</reign>', response_text, re.DOTALL)
         resistance_match = re.search(r'<resistance>(.*?)</resistance>', response_text, re.DOTALL)
         neo_match = re.search(r'<neo>(.*?)</neo>', response_text, re.DOTALL)
@@ -340,15 +388,21 @@ Begin generation now."""
         }
         
         # Save combined show file
-        combined_html = self.build_combined_html(shows, week_number)
-        show_file = self.shows_dir / f"{week_number}.html"
+        self.save_shows(shows)
+        
+    def save_shows(self, shows):
+        """Save the combined HTML show file"""
+        print("\n💾 Saving show files...")
+        
+        combined_html = self.build_combined_html(shows)
+        show_file = self.shows_dir / f"{self.week_number}.html"
         
         with open(show_file, 'w') as f:
             f.write(combined_html)
         
         print(f"  ✓ Saved combined show: {show_file}")
         
-    def build_combined_html(self, shows, week_number):
+    def build_combined_html(self, shows):
         """Combine all three brand shows into one HTML file"""
         
         html = f"""<!DOCTYPE html>
@@ -356,14 +410,14 @@ Begin generation now."""
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UWA Week {week_number} - All Shows</title>
+    <title>UWA Week {self.week_number} - All Shows</title>
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
     <div class="container">
         <header>
             <h1>United Wrestling Accord</h1>
-            <p>Week {week_number} - All Three Brand Shows</p>
+            <p>Week {self.week_number} - All Three Brand Shows</p>
         </header>
         
         <nav>
@@ -403,9 +457,134 @@ Begin generation now."""
         return html
         
     def update_tracking_files(self):
-        """Update all tracking files after show generation (placeholder)"""
+        """Update all tracking files after show generation"""
         print("\n💾 Updating tracking files...")
-        print("  (Will parse matches and update tracking in next step)")
+        
+        if not self.generated_matches:
+            print("  ⚠ No match data to process, skipping tracking updates")
+            return
+        
+        # Update match history
+        self.update_match_history()
+        
+        # Update championships
+        self.update_championships()
+        
+        # Update storylines
+        self.update_storylines()
+        
+        print("  ✓ All tracking files updated")
+        
+    def update_match_history(self):
+        """Update match-history.json with new matches"""
+        print("  📝 Updating match history...")
+        
+        today = datetime.now().strftime("%Y-%m-%d")
+        
+        # Add all matches from all brands
+        for brand in ['reign', 'resistance', 'neo']:
+            brand_matches = self.generated_matches.get(brand, [])
+            for match in brand_matches:
+                match_record = {
+                    "week": self.week_number,
+                    "brand": brand,
+                    "date": today,
+                    "participants": match.get('participants', []),
+                    "winner": match.get('winner'),
+                    "method": match.get('method'),
+                    "duration": match.get('duration'),
+                    "championship": match.get('championship'),
+                    "championship_change": match.get('championship_change', False),
+                    "storyline_id": match.get('storyline_id')
+                }
+                self.match_history['matches'].append(match_record)
+        
+        # Update metadata
+        self.match_history['totalMatches'] = len(self.match_history['matches'])
+        self.match_history['lastUpdated'] = today
+        
+        # Save updated file
+        history_file = self.tracking_dir / 'match-history.json'
+        with open(history_file, 'w') as f:
+            json.dump(self.match_history, f, indent=2)
+        
+        print(f"    ✓ Added {sum(len(self.generated_matches.get(b, [])) for b in ['reign', 'resistance', 'neo'])} matches")
+    
+    def update_championships(self):
+        """Update championships.json with title defenses and changes"""
+        print("  🏆 Updating championships...")
+        
+        today = datetime.now().strftime("%Y-%m-%d")
+        
+        # Count defenses for each championship
+        for brand in ['reign', 'resistance', 'neo']:
+            brand_matches = self.generated_matches.get(brand, [])
+            for match in brand_matches:
+                if match.get('championship'):
+                    championship_title = match['championship']
+                    
+                    # Find and update the champion's defense count
+                    if brand == 'reign':
+                        for title in self.championships['champions']['reign']:
+                            if title.get('title') == championship_title:
+                                title['defenses'] = title.get('defenses', 0) + 1
+                    elif brand == 'resistance':
+                        for title in self.championships['champions']['resistance']:
+                            if title.get('title') == championship_title:
+                                title['defenses'] = title.get('defenses', 0) + 1
+                    elif brand == 'neo':
+                        for title in self.championships['champions']['neo']:
+                            if title.get('title') == championship_title:
+                                title['defenses'] = title.get('defenses', 0) + 1
+                    
+                    # Handle championship changes
+                    if match.get('championship_change'):
+                        # TODO: Implement championship change logic
+                        print(f"    ⚠ Championship change detected: {championship_title} - needs manual update")
+        
+        # Update metadata
+        current_week = self.championships.get('currentWeek', 0)
+        self.championships['currentWeek'] = current_week + 1
+        self.championships['lastUpdated'] = today
+        
+        # Save updated file
+        champs_file = self.tracking_dir / 'championships.json'
+        with open(champs_file, 'w') as f:
+            json.dump(self.championships, f, indent=2)
+        
+        print(f"    ✓ Updated to Week {self.championships['currentWeek']}")
+    
+    def update_storylines(self):
+        """Update storyline-progression.json with new beats"""
+        print("  📖 Updating storylines...")
+        
+        today = datetime.now().strftime("%Y-%m-%d")
+        
+        # Update next beats based on generated data
+        storyline_updates = self.generated_matches.get('storyline_updates', [])
+        for update in storyline_updates:
+            storyline_id = update.get('storyline_id')
+            new_next_beat = update.get('new_next_beat')
+            
+            # Find and update the storyline
+            for brand in ['reign', 'resistance', 'neo']:
+                brand_stories = self.storylines['storylines'].get(brand, [])
+                for story in brand_stories:
+                    if story.get('id') == storyline_id:
+                        story['nextBeat'] = new_next_beat
+                        print(f"    ✓ Updated {storyline_id}: {new_next_beat}")
+        
+        # Update metadata
+        current_week = self.storylines.get('currentWeek', 0)
+        self.storylines['currentWeek'] = current_week + 1
+        self.storylines['lastUpdated'] = today
+        
+        # Save updated file
+        storylines_file = self.tracking_dir / 'storyline-progression.json'
+        with open(storylines_file, 'w') as f:
+            json.dump(self.storylines, f, indent=2)
+        
+        print(f"    ✓ Updated to Week {self.storylines['currentWeek']}")
         
     def create_html_pages(self):
         """Create results.html and archive pages (placeholder)"""
@@ -427,7 +606,7 @@ Begin generation now."""
         # Step 3: Generate shows
         self.generate_shows()
         
-        # Step 4: Update tracking (placeholder)
+        # Step 4: Update tracking
         self.update_tracking_files()
         
         # Step 5: Create HTML (placeholder)
