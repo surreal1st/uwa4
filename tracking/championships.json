@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2025-11-08",
-  "currentWeek": 0,
+  "lastUpdated": "2025-11-09",
+  "currentWeek": 1,
   "champions": {
     "uwa": {
       "title": "UWA World Championship",
@@ -20,7 +20,7 @@
         "title": "Horizon Championship",
         "champion": "Cameron Grayson",
         "reignStart": "Week 0",
-        "defenses": 0
+        "defenses": 1
       },
       {
         "title": "REIGN Women's Championship",
@@ -36,10 +36,13 @@
       },
       {
         "title": "REIGN Tag Team Championship",
-        "champions": ["Mordida de Escarcha", "Sangre Fria"],
+        "champions": [
+          "Mordida de Escarcha",
+          "Sangre Fria"
+        ],
         "teamName": "Los Asesinos",
         "reignStart": "Week 0",
-        "defenses": 0
+        "defenses": 1
       }
     ],
     "resistance": [
@@ -53,7 +56,7 @@
         "title": "Resistance Television Championship",
         "champion": "Mike McCoy",
         "reignStart": "Week 0",
-        "defenses": 0
+        "defenses": 1
       },
       {
         "title": "Resistance Cruiserweight Championship",
@@ -69,7 +72,10 @@
       },
       {
         "title": "Resistance Tag Team Championship",
-        "champions": ["Southern Rebel #1", "Southern Rebel #2"],
+        "champions": [
+          "Southern Rebel #1",
+          "Southern Rebel #2"
+        ],
         "teamName": "The Southern Rebels",
         "reignStart": "Week 0",
         "defenses": 0
@@ -86,7 +92,7 @@
         "title": "NEO Internet Championship",
         "champion": "Adam Winters",
         "reignStart": "Week 0",
-        "defenses": 0
+        "defenses": 1
       },
       {
         "title": "NEO Women's Championship",
@@ -96,7 +102,10 @@
       },
       {
         "title": "NEO Tag Team Championship",
-        "champions": ["E.B. Mitchell", "Isaiah Sherwin Abrams"],
+        "champions": [
+          "E.B. Mitchell",
+          "Isaiah Sherwin Abrams"
+        ],
         "teamName": "The Consortium",
         "reignStart": "Week 0",
         "defenses": 0

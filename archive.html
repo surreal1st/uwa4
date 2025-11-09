@@ -5,6 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Archive - United Wrestling Accord</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .archive-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .archive-item {
+            margin-bottom: 15px;
+        }
+        
+        .archive-link {
+            display: block;
+            padding: 20px 25px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+        
+        .archive-link:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+        
+        .archive-week {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #DC143C 0%, #00BFFF 50%, #9333EA 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .archive-date {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        
+        .archive-brands {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -26,15 +77,19 @@
 
     <section class="content">
         <h1 class="section-title">Show Archive</h1>
-        <p class="section-subtitle">Browse past weeks of UWA action</p>
+        <p class="section-subtitle">Browse past weeks of UWA action • 1 week(s) archived</p>
         
         <div class="card">
             <h2>All Weeks</h2>
             <ul class="archive-list">
-                <!-- Archive links will be added here as shows are generated -->
-                <li style="text-align: center; padding: 40px; color: #888;">
-                    No shows archived yet. Check back after the first week of action!
-                </li>
+        <li class="archive-item">
+            <a href="shows/1.html" class="archive-link">
+                <div class="archive-week">Week 1</div>
+                <div class="archive-date">November 09, 2025</div>
+                <div class="archive-brands">REIGN • Resistance • PW:NEO</div>
+            </a>
+        </li>
+
             </ul>
         </div>
     </section>
