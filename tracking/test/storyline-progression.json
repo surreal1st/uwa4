@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2025-11-08",
-  "currentWeek": 0,
+  "lastUpdated": "2025-11-09",
+  "currentWeek": 2,
   "storylines": {
     "reign": [
       {
@@ -12,7 +12,7 @@
         "championships": ["UWA World Championship", "REIGN World Championship"],
         "startWeek": 0,
         "description": "Ryan Odyssey uses psychological warfare against dual champion Avalanche Anderson",
-        "nextBeat": "Escalate psychological tactics",
+        "nextBeat": "Anderson confronts Odyssey directly, demands title match",
         "longTermDirection": "Title match at PPV"
       },
       {
@@ -24,7 +24,7 @@
         "championships": ["Horizon Championship"],
         "startWeek": 0,
         "description": "WOLF MAN seeks rematch after brutal chair attack on champion Cameron Grayson",
-        "nextBeat": "Continue violent confrontations",
+        "nextBeat": "WOLF MAN demands rematch with even more extreme stipulation",
         "longTermDirection": "Rematch with stipulation"
       },
       {
@@ -36,7 +36,7 @@
         "championships": ["REIGN Women's Championship"],
         "startWeek": 0,
         "description": "Dr. Thorne's alliance targets Women's Champion Ivy Knight through psychological manipulation",
-        "nextBeat": "Lexi Gomez challenges for title",
+        "nextBeat": "Thorne negotiates stipulation for Gomez's rematch",
         "longTermDirection": "Championship match"
       }
     ],
@@ -50,7 +50,7 @@
         "championships": ["Resistance World Championship"],
         "startWeek": 0,
         "description": "XXCW hired mercenary Archer Quincannon to destroy World Champion Holden Nobody",
-        "nextBeat": "Quincannon continues assault on Nobody",
+        "nextBeat": "Nobody vs Quincannon championship match announced",
         "longTermDirection": "Championship match"
       },
       {
@@ -62,7 +62,7 @@
         "championships": ["Resistance Television Championship", "Resistance Tag Team Championship"],
         "startWeek": 0,
         "description": "XXCW faction attempts complete hostile takeover of The Resistance",
-        "nextBeat": "Continue dominance and attacks",
+        "nextBeat": "Resistance loyalists plan coordinated counterattack against XXCW",
         "longTermDirection": "War with Resistance loyalists"
       },
       {
@@ -74,7 +74,7 @@
         "championships": ["Resistance Women's Championship"],
         "startWeek": 0,
         "description": "Women's Champion Mia Taylor seeks revenge after brutal XXCW attack",
-        "nextBeat": "Taylor recovers and confronts attackers",
+        "nextBeat": "Taylor targets McCoy for revenge match",
         "longTermDirection": "Revenge matches"
       }
     ],
@@ -88,7 +88,7 @@
         "championships": ["NEO World Championship"],
         "startWeek": 0,
         "description": "XXCW invader Preston Alexander's mysterious agenda creates four-way standoff",
-        "nextBeat": "Reveal more of Alexander's intentions",
+        "nextBeat": "Alexander reveals partial agenda, demands match with Morgan",
         "longTermDirection": "Multi-person title match"
       },
       {
@@ -100,7 +100,7 @@
         "championships": ["NEO World Championship"],
         "startWeek": 0,
         "description": "NEO World Champion maintains authoritarian control through Consortium",
-        "nextBeat": "Defend against all challengers",
+        "nextBeat": "Morgan faces multiple challengers, paranoia increases",
         "longTermDirection": "Face multiple threats"
       },
       {
@@ -112,7 +112,7 @@
         "championships": [],
         "startWeek": 0,
         "description": "Ideological war between order (Consortium) and chaos (Red Letter Society)",
-        "nextBeat": "Escalate faction warfare",
+        "nextBeat": "Red Letter Society prepares all-out assault on Consortium",
         "longTermDirection": "Control of PW:NEO"
       }
     ]
