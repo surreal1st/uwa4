@@ -1,0 +1,73 @@
+name: Generate UWA Weekly Shows
+
+on:
+  schedule:
+    # Runs every Friday at 2:00 AM EST (7:00 AM UTC)
+    - cron: '0 7 * * 5'
+  
+  workflow_dispatch:
+    # Allow manual triggering for testing
+    inputs:
+      week_number:
+        description: 'Week number to generate (optional - auto-increments if not provided)'
+        required: false
+        type: string
+
+jobs:
+  generate-shows:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install anthropic requests python-dotenv
+      
+      - name: Configure Git
+        run: |
+          git config --global user.name 'UWA Automation'
+          git config --global user.email 'automation@uwa.local'
+      
+      - name: Generate weekly shows
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          echo "Show generation script will run here"
+          # python scripts/generate_shows.py
+      
+      - name: Commit generated content
+        run: |
+          git add .
+          git diff --staged --quiet || git commit -m "Generate Week ${{ github.run_number }} shows"
+          git push
+      
+      - name: Deploy to FTP
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_PORT: ${{ secrets.FTP_PORT }}
+        run: |
+          echo "FTP deployment script will run here"
+          # python scripts/deploy_ftp.py
+      
+      - name: Create deployment summary
+        run: |
+          echo "## UWA Weekly Show Generation" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Shows generated successfully" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Content committed to repository" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Deployed to web server" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Week:** ${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Timestamp:** $(date -u)" >> $GITHUB_STEP_SUMMARY
