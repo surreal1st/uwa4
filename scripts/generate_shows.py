@@ -228,6 +228,19 @@ Generate shows for all THREE brands in a single response:
 
 REQUIREMENTS FOR EACH BRAND'S SHOW:
 
+**CRITICAL: VARIATION AND FRESHNESS (NEW REQUIREMENT):**
+- **Segment titles MUST be unique each week** - Never repeat titles like "The Mind Games Begin" or "Opening Segment: [Same Title]"
+- Vary your storytelling approach between weeks:
+  - Week 1 might open with a promo, Week 2 with a confrontation, Week 3 with a match
+  - Rotate between backstage segments, in-ring promos, video packages, interview segments
+  - Use different narrative structures (build tension vs. explosive action vs. character development)
+- Even for continuing storylines, present them differently:
+  - If last week was "The Mind Games Begin", this week could be "Psychological Warfare Escalates" or "Champion Under Siege"
+  - Vary the participants in segments - different wrestlers commenting, different interview locations
+  - Change the tone/format: formal promo → casual backstage → heated confrontation → calculated announcement
+- Make each week feel like a new episode of TV, not a rerun
+- Be creative with segment naming - make them descriptive and specific to THIS week's events
+
 **Content Structure:**
 - 4-6 matches per show
 - 3-4 segments between matches (promos, backstage interviews, confrontations)
