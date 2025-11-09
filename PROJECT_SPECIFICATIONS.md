@@ -5,7 +5,7 @@ Automated weekly wrestling show generation system for the United Wrestling Accor
 
 ---
 
-## Current Status: PHASE 1 COMPLETE ✅
+## Current Status: PHASE 2 COMPLETE ✅
 
 ### What's Working:
 1. ✅ Repository structure with tracking system
@@ -14,11 +14,13 @@ Automated weekly wrestling show generation system for the United Wrestling Accor
 4. ✅ Championship defense tracking
 5. ✅ Storyline progression automation
 6. ✅ Test mode for safe development
+7. ✅ **Results page auto-generation**
+8. ✅ **Archive system with show listing**
 
 ### What's Next:
-- Results page generation (results.html)
-- Archive system for past shows
 - FTP deployment automation
+- Enhanced show metrics visualization
+- Championship history pages
 
 ---
 
@@ -37,10 +39,14 @@ uwa4/
 ├── shows/                  # Production HTML shows
 ├── test-shows/             # Test mode HTML shows
 ├── scripts/
-│   └── generate_shows.py   # Main generation script
+│   ├── generate_shows.py        # Main generation script
+│   ├── generate_results_page.py # Results page generator  
+│   └── generate_archive_page.py # Archive page generator
 ├── assets/
 │   └── css/
 │       └── style.css       # Website styling
+├── results.html            # Latest results page
+├── archive.html            # Show archive page
 └── UWA_COMPLETE_GUIDE.md   # Roster and character details
 ```
 
@@ -107,6 +113,11 @@ uwa4/
    - Raw response for debugging
    - Updated tracking files
 
+7. **Generate Website Pages (NEW)**
+   - Auto-generates results.html with latest show
+   - Auto-generates archive.html with all past shows
+   - Updates champion listings dynamically
+
 ### Command Usage:
 
 **Test Mode (Safe):**
@@ -116,6 +127,7 @@ python scripts/generate_shows.py --test
 - Uses `/tracking/test/` files
 - Saves to `/test-shows/`
 - Week format: TEST-001, TEST-002, etc.
+- Updates results.html and archive.html with test data
 
 **Production Mode:**
 ```bash
@@ -124,6 +136,16 @@ python scripts/generate_shows.py
 - Uses `/tracking/` files
 - Saves to `/shows/`
 - Week format: 1, 2, 3, etc.
+- Updates live results.html and archive.html
+
+**Manual Page Generation:**
+```bash
+# Generate results page only
+python scripts/generate_results_page.py --test
+
+# Generate archive page only
+python scripts/generate_archive_page.py --test
+```
 
 ---
 
@@ -194,6 +216,38 @@ Claude returns TWO parts:
 
 ---
 
+## Phase 2: Results & Archive System
+
+### Results Page (results.html)
+**Features:**
+- Displays latest show with prominent link
+- Current champions across all brands
+- Brand-color coded sections (REIGN=red, Resistance=blue, NEO=purple)
+- Auto-updates after each generation
+- Responsive design
+
+**Auto-Generation:**
+- Runs automatically after show generation
+- Reads latest show file from shows/ directory
+- Pulls champion data from championships.json
+- Creates formatted HTML with current data
+
+### Archive Page (archive.html)
+**Features:**
+- Chronological listing of all past shows
+- Most recent shows first
+- Week numbers, dates, and brand info
+- Clickable links to individual shows
+- Shows total count
+
+**Auto-Generation:**
+- Scans shows/ directory for all HTML files
+- Sorts by week number
+- Generates navigation list
+- Updates automatically with each new show
+
+---
+
 ## Test Results (Week TEST-002)
 
 ### Tracking Updates Verified:
@@ -228,32 +282,30 @@ Claude returns TWO parts:
    - Must be set as environment variable
    - `ANTHROPIC_API_KEY=your_key_here`
 
-3. **Results Page:**
-   - Not yet implemented
-   - Shows saved as individual HTML files
-
-4. **FTP Deployment:**
+3. **FTP Deployment:**
    - Not yet integrated
    - Manual deployment required
+   - deploy_ftp.py exists but not integrated into workflow
 
 ---
 
 ## Next Development Phase
 
-### Priority 1: Results Page
-- Generate `results.html` with latest shows
-- Quick-access navigation
-- Show metrics display
-
-### Priority 2: Archive System
-- Automatic archive page creation
-- Week-by-week navigation
-- Championship history tracking
-
-### Priority 3: FTP Deployment
-- Automated upload to live site
-- Post-generation deployment
+### Priority 1: FTP Deployment Automation
+- Integrate deploy_ftp.py into generation workflow
+- Automated upload to live site after generation
+- Upload results.html and archive.html
 - Error handling and rollback
+
+### Priority 2: Enhanced Visualizations
+- Championship reign timelines
+- Storyline progress indicators
+- Match history statistics
+
+### Priority 3: Historical Pages
+- Individual championship history pages
+- Wrestler profile pages with stats
+- Storyline arc summaries
 
 ---
 
@@ -279,11 +331,13 @@ export ANTHROPIC_API_KEY="your_api_key_here"
 **Production:**
 - Tracking: `/tracking/*.json`
 - Shows: `/shows/*.html`
+- Website: `/results.html`, `/archive.html`
 - Guide: `/UWA_COMPLETE_GUIDE.md`
 
 **Test:**
 - Tracking: `/tracking/test/*.json`
 - Shows: `/test-shows/*.html`
+- Website: Updated with test data paths
 
 ---
 
@@ -296,49 +350,74 @@ export ANTHROPIC_API_KEY="your_api_key_here"
 ✅ Match history comprehensive  
 ✅ Zero manual data entry required  
 ✅ Test mode prevents production issues  
+✅ Results page auto-updates  
+✅ Archive system auto-populates  
 
 ### Future Goals:
-⏳ One-command deployment  
-⏳ Historical archive browsing  
-⏳ Automatic results page updates  
-⏳ FTP upload automation  
+⏳ One-command deployment to live site  
+⏳ Historical archive browsing enhancements  
+⏳ Championship history visualization  
+⏳ Advanced show statistics  
 
 ---
 
 ## Developer Notes
 
-### To Continue Development:
+### Phase 2 Implementation Details:
 
-1. **For Results Page:**
-   - Create template for results.html
-   - Parse latest show files
-   - Generate navigation
-   - Add show metrics
+**Results Page Generator (`generate_results_page.py`):**
+- Reads tracking/championships.json for current champions
+- Finds latest show file in shows/ directory
+- Builds champion grid with brand colors
+- Creates show link card with gradient button
+- Writes to root results.html
 
-2. **For Archive System:**
-   - Create archive template
-   - Generate weekly archive pages
-   - Build navigation system
-   - Link from results page
+**Archive Generator (`generate_archive_page.py`):**
+- Scans shows/ directory for all HTML files
+- Sorts by week number (handles both TEST-001 and numeric formats)
+- Builds archive list with metadata
+- Includes show dates and brand info
+- Writes to root archive.html
 
-3. **For FTP Deployment:**
-   - Add FTP credentials to config
-   - Implement upload function
-   - Add error handling
-   - Create deployment log
+**Integration:**
+- Both generators called automatically after show generation
+- Test mode support via --test flag
+- Error handling prevents generation failure
+- Standalone execution also supported
+
+### For Future Development:
+
+1. **For FTP Deployment:**
+   - Import deploy_ftp.py into generate_shows.py
+   - Add FTP credentials to environment
+   - Upload after page generation
+   - Include error handling
+
+2. **For Enhanced Features:**
+   - Create championship history tracker
+   - Build storyline visualization
+   - Add match statistics aggregation
 
 ### Testing Protocol:
 1. Always use `--test` flag first
 2. Verify tracking file updates
 3. Check HTML output quality
-4. Review storyline progression
-5. Only then run production mode
+4. Review results.html and archive.html updates
+5. Verify champion listings
+6. Check archive show links
+7. Only then run production mode
 
 ---
 
 ## Version History
 
-**v0.4 - Current (Nov 9, 2025)**
+**v0.5 - Current (Nov 9, 2025)**
+- ✅ Phase 2 Complete
+- ✅ Results page auto-generation
+- ✅ Archive system implementation
+- ✅ Integrated website page updates
+
+**v0.4 - Nov 9, 2025**
 - ✅ Automatic tracking updates
 - ✅ Storyline progression automation
 - ✅ Championship defense tracking
@@ -371,4 +450,4 @@ For questions about this system, refer to:
 ---
 
 *Last Updated: November 9, 2025*  
-*Status: Phase 1 Complete - Show Generation & Tracking Functional*
+*Status: Phase 2 Complete - Results & Archive System Functional*
