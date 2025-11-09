@@ -1,0 +1,120 @@
+{
+  "lastUpdated": "2025-11-08",
+  "currentWeek": 0,
+  "storylines": {
+    "reign": [
+      {
+        "id": "reign-001",
+        "title": "The Mind Is The New Weapon",
+        "priority": 10,
+        "status": "active",
+        "participants": ["Avalanche Anderson", "Ryan Odyssey"],
+        "championships": ["UWA World Championship", "REIGN World Championship"],
+        "startWeek": 0,
+        "description": "Ryan Odyssey uses psychological warfare against dual champion Avalanche Anderson",
+        "nextBeat": "Escalate psychological tactics",
+        "longTermDirection": "Title match at PPV"
+      },
+      {
+        "id": "reign-002",
+        "title": "Horizon Championship Rematch",
+        "priority": 9,
+        "status": "active",
+        "participants": ["Cameron Grayson", "WOLF MAN"],
+        "championships": ["Horizon Championship"],
+        "startWeek": 0,
+        "description": "WOLF MAN seeks rematch after brutal chair attack on champion Cameron Grayson",
+        "nextBeat": "Continue violent confrontations",
+        "longTermDirection": "Rematch with stipulation"
+      },
+      {
+        "id": "reign-003",
+        "title": "Ivy Knight vs Thorne Alliance",
+        "priority": 8,
+        "status": "active",
+        "participants": ["Ivy Knight", "Lexi Gomez", "Dr. Marcus Thorne"],
+        "championships": ["REIGN Women's Championship"],
+        "startWeek": 0,
+        "description": "Dr. Thorne's alliance targets Women's Champion Ivy Knight through psychological manipulation",
+        "nextBeat": "Lexi Gomez challenges for title",
+        "longTermDirection": "Championship match"
+      }
+    ],
+    "resistance": [
+      {
+        "id": "resistance-001",
+        "title": "The Mercenary Destroyer",
+        "priority": 11,
+        "status": "active",
+        "participants": ["Archer Quincannon", "Holden Nobody", "Alexei Volkov"],
+        "championships": ["Resistance World Championship"],
+        "startWeek": 0,
+        "description": "XXCW hired mercenary Archer Quincannon to destroy World Champion Holden Nobody",
+        "nextBeat": "Quincannon continues assault on Nobody",
+        "longTermDirection": "Championship match"
+      },
+      {
+        "id": "resistance-002",
+        "title": "XXCW Hostile Takeover",
+        "priority": 10,
+        "status": "active",
+        "participants": ["Alexei Volkov", "Mike McCoy", "Silas Black", "Captain Maximum", "Southern Rebels", "Archer Quincannon"],
+        "championships": ["Resistance Television Championship", "Resistance Tag Team Championship"],
+        "startWeek": 0,
+        "description": "XXCW faction attempts complete hostile takeover of The Resistance",
+        "nextBeat": "Continue dominance and attacks",
+        "longTermDirection": "War with Resistance loyalists"
+      },
+      {
+        "id": "resistance-003",
+        "title": "Mia Taylor's Fight Back",
+        "priority": 8,
+        "status": "active",
+        "participants": ["Mia Taylor", "Mike McCoy", "Captain Maximum"],
+        "championships": ["Resistance Women's Championship"],
+        "startWeek": 0,
+        "description": "Women's Champion Mia Taylor seeks revenge after brutal XXCW attack",
+        "nextBeat": "Taylor recovers and confronts attackers",
+        "longTermDirection": "Revenge matches"
+      }
+    ],
+    "neo": [
+      {
+        "id": "neo-001",
+        "title": "Preston Alexander's Enigmatic Threat",
+        "priority": 10,
+        "status": "active",
+        "participants": ["Preston Alexander", "Judge James Morgan", "David Fish", "Isaiah Sherwin Abrams"],
+        "championships": ["NEO World Championship"],
+        "startWeek": 0,
+        "description": "XXCW invader Preston Alexander's mysterious agenda creates four-way standoff",
+        "nextBeat": "Reveal more of Alexander's intentions",
+        "longTermDirection": "Multi-person title match"
+      },
+      {
+        "id": "neo-002",
+        "title": "Judge Morgan's Tyrannical Reign",
+        "priority": 9,
+        "status": "active",
+        "participants": ["Judge James Morgan"],
+        "championships": ["NEO World Championship"],
+        "startWeek": 0,
+        "description": "NEO World Champion maintains authoritarian control through Consortium",
+        "nextBeat": "Defend against all challengers",
+        "longTermDirection": "Face multiple threats"
+      },
+      {
+        "id": "neo-003",
+        "title": "Consortium vs Red Letter Society",
+        "priority": 8,
+        "status": "active",
+        "participants": ["Judge James Morgan", "Micah Black", "Dottie Dread", "Claire LaRue"],
+        "championships": [],
+        "startWeek": 0,
+        "description": "Ideological war between order (Consortium) and chaos (Red Letter Society)",
+        "nextBeat": "Escalate faction warfare",
+        "longTermDirection": "Control of PW:NEO"
+      }
+    ]
+  }
+}
