@@ -47,7 +47,7 @@ The UWA also governs two cross-promotional championships that can be defended ac
 ### Resistance Brand Championships
 
 **Resistance World Championship**
-- **Champion:** Holden Nobody (SHOOT Project legend)
+- **Champion:** Holden Nobody (Rising star rookie)
 - **Record:** 1-1
 - Won championship in Week 5 from Alexei Volkov
 
@@ -154,7 +154,7 @@ The UWA also governs two cross-promotional championships that can be defended ac
 ### Singles Competitors (29)
 
 **Main Event Stars:**
-- Holden Nobody (FACE) - 1-1 - **WORLD CHAMPION** - SHOOT Project legend
+- Holden Nobody (FACE) - 1-1 - **WORLD CHAMPION** - Rising star rookie
 - Alexei Volkov (HEEL) - 8-2 - Former World Champion, XXCW leader
 - Mike McCoy "The Enigma" (HEEL) - 5-2 - Television Champion, XXCW
 - Captain Maximum (HEEL) - 5-3 - XXCW traitor
@@ -459,11 +459,11 @@ Archer Quincannon is a legendary mercenary from SHOOT Project with 20 years of e
 
 In Week 6, Quincannon made his debut in the most brutal way possible. During a tag team main event, the lights went out and when they returned, Quincannon was standing in the ring. He delivered a devastating lariat and piledriver to Nobody, leaving the World Champion unconscious while XXCW stood tall.
 
-This isn't just about the championship - it's about survival. Quincannon has made it clear he's here to end Holden Nobody's legendary career. The SHOOT Project legend who came to save The Resistance now faces the most dangerous threat of his life: another SHOOT Project veteran with nothing to lose and everything to prove.
+This isn't just about the championship - it's about survival. Quincannon has made it clear he's here to destroy Holden Nobody's promising young career before it truly begins. The rising rookie who shocked the world by winning the championship now faces the most dangerous threat of his life: a SHOOT Project mercenary with 20 years of experience hunting young champions.
 
 **What's at Stake:**
 - The Resistance World Championship
-- Holden Nobody's legendary career and possibly his health
+- Holden Nobody's promising young career (and possibly his health)
 - The Resistance's hope of overcoming the XXCW invasion
 - Alexei Volkov's redemption after losing the title
 
@@ -516,19 +516,20 @@ After losing the World Championship to Holden Nobody, XXCW isn't retreating - th
 **Championship:** Resistance World Championship
 
 **The Story:**
-Holden Nobody is a living legend from SHOOT Project who debuted in The Resistance at the perfect time. With XXCW's hostile takeover threatening to destroy the brand, Nobody stepped up and did the impossible - he defeated the seemingly unstoppable Alexei Volkov to capture the World Championship.
+Holden Nobody is a talented rookie who debuted in The Resistance at the perfect time. With XXCW's hostile takeover threatening to destroy the brand, the young upstart stepped up and shocked the world - he defeated the seemingly unstoppable veteran Alexei Volkov to capture the World Championship.
 
-This was more than just a title win. It was a statement that heart and honor could defeat corporate money and power. Nobody represents everything The Resistance stands for: blue-collar grit, old-school values, and refusing to quit no matter the odds.
+This was more than just a title win. It was a Cinderella story - a statement that heart, determination, and raw talent could defeat experience, corporate money, and power. Nobody represents everything The Resistance stands for: blue-collar grit, never-say-die attitude, and refusing to quit no matter the odds. He's proof that you don't need decades of experience to be champion - you need heart.
 
-However, his championship reign immediately faces the ultimate test in Archer Quincannon. The mercenary destroyer made it clear that he's here specifically to end Nobody's reign and his career. Nobody must now prove that his Week 5 victory wasn't beginner's luck - he must defend his championship and The Resistance's honor against a man who has ended legends across the globe.
+However, his fairytale championship reign immediately faces a nightmare scenario in Archer Quincannon. The mercenary destroyer - a man with 20 years of experience ending careers - made it clear that he's here specifically to destroy Nobody before the rookie's career truly begins. Nobody must now prove that his Week 5 victory wasn't beginner's luck - he must defend his championship and The Resistance's honor against a man who specializes in crushing young talent before they become legends.
 
-This is a story about a legendary champion facing his most dangerous challenge while carrying the hopes of an entire brand on his shoulders.
+This is a story about an underdog rookie champion fighting to survive against a seasoned killer, while carrying the hopes of an entire brand on his shoulders.
 
 **What's at Stake:**
 - The Resistance World Championship
 - The hope of The Resistance overcoming XXCW
-- Nobody's legendary career
-- The credibility of old-school values vs. modern mercenary tactics
+- Nobody's promising young career (and possibly his health)
+- Whether a talented rookie can survive against a seasoned destroyer
+- Proof that heart and determination can overcome experience and brutality
 
 **Key Moment:** Nobody's shocking championship victory over Volkov in Week 5, followed immediately by Quincannon's brutal attack in Week 6
 
