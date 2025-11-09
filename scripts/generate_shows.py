@@ -587,9 +587,30 @@ Begin generation now."""
         print(f"    ✓ Updated to Week {self.storylines['currentWeek']}")
         
     def create_html_pages(self):
-        """Create results.html and archive pages (placeholder)"""
-        print("\n📄 Creating HTML pages...")
-        print("  (Will create results.html and archive in next step)")
+        """Create results.html and archive.html pages"""
+        print("\n📄 Generating website pages...")
+        
+        try:
+            # Import the page generators
+            sys.path.insert(0, str(self.repo_root / "scripts"))
+            from generate_results_page import ResultsPageGenerator
+            from generate_archive_page import ArchivePageGenerator
+            
+            # Generate results page
+            print("  📊 Generating results.html...")
+            results_gen = ResultsPageGenerator(test_mode=self.test_mode)
+            results_gen.generate_results_page()
+            
+            # Generate archive page
+            print("  📚 Generating archive.html...")
+            archive_gen = ArchivePageGenerator(test_mode=self.test_mode)
+            archive_gen.generate_archive_page()
+            
+            print("  ✓ Website pages generated successfully!")
+            
+        except Exception as e:
+            print(f"  ⚠ Warning: Could not generate website pages: {e}")
+            print("  Continuing without website page generation...")
     
     def run(self):
         """Main execution flow"""
@@ -609,7 +630,7 @@ Begin generation now."""
         # Step 4: Update tracking
         self.update_tracking_files()
         
-        # Step 5: Create HTML (placeholder)
+        # Step 5: Generate website pages
         self.create_html_pages()
         
         print("\n✅ Generation complete!")
