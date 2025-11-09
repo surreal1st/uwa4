@@ -130,10 +130,17 @@ class UWAShowGenerator:
                         print(f"      {title['title']}: {title['champion']}")
         
         if self.storylines:
-            active_storylines = [s for s in self.storylines.get('storylines', []) if s.get('status') == 'active']
+            # Collect all active storylines from all brands
+            active_storylines = []
+            storylines_data = self.storylines.get('storylines', {})
+            for brand in ['reign', 'resistance', 'neo']:
+                brand_stories = storylines_data.get(brand, [])
+                active_storylines.extend([s for s in brand_stories if s.get('status') == 'active'])
+            
             print(f"\n  📖 Active Storylines: {len(active_storylines)}")
             for story in active_storylines[:3]:  # Show first 3
-                print(f"    - {story.get('title', 'Untitled')} ({story.get('brand', 'Unknown')})")
+                brand_name = 'REIGN' if 'reign' in story.get('id', '') else 'Resistance' if 'resistance' in story.get('id', '') else 'NEO'
+                print(f"    - {story.get('title', 'Untitled')} ({brand_name})")
         
         print("\n" + "="*60)
     
