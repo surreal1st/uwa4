@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2025-11-09",
-  "currentWeek": 4,
+  "lastUpdated": "2025-11-14",
+  "currentWeek": 5,
   "storylines": {
     "reign": [
       {
@@ -18,7 +18,7 @@
         ],
         "startWeek": 0,
         "description": "Ryan Odyssey uses psychological warfare against dual champion Avalanche Anderson",
-        "nextBeat": "New champion Ryan Odyssey establishes his psychological reign while Anderson seeks redemption and revenge",
+        "nextBeat": "Ryan Odyssey confronts Anderson directly, championship match officially announced",
         "longTermDirection": "Title match at PPV"
       },
       {
@@ -35,7 +35,7 @@
         ],
         "startWeek": 0,
         "description": "WOLF MAN seeks rematch after brutal chair attack on champion Cameron Grayson",
-        "nextBeat": "Grayson's clean title defense establishes him as fighting champion, WOLF MAN must find new path to championship",
+        "nextBeat": "WOLF MAN's frustration boils over after clean loss, seeks extreme measures for next opportunity",
         "longTermDirection": "Rematch with stipulation"
       },
       {
@@ -53,7 +53,7 @@
         ],
         "startWeek": 0,
         "description": "Dr. Thorne's alliance targets Women's Champion Ivy Knight through psychological manipulation",
-        "nextBeat": "Dr. Thorne escalates psychological warfare after Lexi's failure, targeting Knight's personal life",
+        "nextBeat": "Dr. Thorne introduces new psychological tactics, possibly recruiting additional allies",
         "longTermDirection": "Championship match"
       },
       {
@@ -70,7 +70,7 @@
         ],
         "startWeek": 0,
         "description": "Champions Los Asesinos face rising challengers in competitive division",
-        "nextBeat": "Prime Directive earns rematch after strong showing, other teams take notice of champions' vulnerability",
+        "nextBeat": "Prime Directive earns official rematch, other teams step up to challenge champions",
         "longTermDirection": "Championship chase"
       },
       {
@@ -86,7 +86,7 @@
         "championships": [],
         "startWeek": 0,
         "description": "Accord Initiative rookies develop through competitive matches",
-        "nextBeat": "Jett Williams seeks opportunity to prove himself against Kade Anderson's winning streak",
+        "nextBeat": "Jett Williams challenges Kade Anderson's streak, rivalry intensifies among rookies",
         "longTermDirection": "Development arc"
       }
     ],
@@ -106,7 +106,7 @@
         ],
         "startWeek": 0,
         "description": "XXCW hired mercenary Archer Quincannon to destroy World Champion Holden Nobody",
-        "nextBeat": "World Championship match officially set between Nobody and Quincannon after champion shows he can compete",
+        "nextBeat": "Official World Championship match set between Nobody and Quincannon",
         "longTermDirection": "Championship match"
       },
       {
@@ -146,7 +146,7 @@
         ],
         "startWeek": 0,
         "description": "Women's Champion Mia Taylor seeks revenge after brutal XXCW attack",
-        "nextBeat": "Mia Taylor makes surprise return to confront Mike McCoy after his dominant victory",
+        "nextBeat": "Mia Taylor seeks revenge match against Mike McCoy for the attack",
         "longTermDirection": "Revenge matches"
       },
       {
@@ -164,7 +164,7 @@
         ],
         "startWeek": 0,
         "description": "High-flying cruiserweights create exciting division",
-        "nextBeat": "McCoy seeks immediate Television Championship rematch while dealing with XXCW pressure over title loss",
+        "nextBeat": "Pyro demands Television Championship rematch, XXCW pressure mounts on McCoy",
         "longTermDirection": "Championship picture development"
       },
       {
@@ -219,7 +219,7 @@
         ],
         "startWeek": 0,
         "description": "XXCW invader Preston Alexander's mysterious agenda creates four-way standoff",
-        "nextBeat": "Alexander's systematic destruction of Consortium forces Judge Morgan to make decision about Gold's future",
+        "nextBeat": "Alexander's attack on Morgan leads to World Championship opportunity",
         "longTermDirection": "Multi-person title match"
       },
       {
@@ -268,7 +268,7 @@
         "championships": [],
         "startWeek": 0,
         "description": "Some Consortium members face confidence issues and losing streaks",
-        "nextBeat": "Rich Gold's loss to Alexander forces Judge Morgan to make difficult decision about his Consortium status",
+        "nextBeat": "Judge Morgan removes Rich Gold from Consortium after continued failures",
         "longTermDirection": "Potential faction split"
       },
       {

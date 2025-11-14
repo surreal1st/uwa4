@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2025-11-09",
-  "currentWeek": 4,
+  "lastUpdated": "2025-11-14",
+  "currentWeek": 5,
   "champions": {
     "uwa": {
       "title": "UWA World Championship",
@@ -20,13 +20,13 @@
         "title": "Horizon Championship",
         "champion": "Cameron Grayson",
         "reignStart": "Week 0",
-        "defenses": 4
+        "defenses": 5
       },
       {
         "title": "REIGN Women's Championship",
         "champion": "Ivy Knight",
         "reignStart": "Week 0",
-        "defenses": 1
+        "defenses": 2
       },
       {
         "title": "DeathKore Championship",
@@ -42,7 +42,7 @@
         ],
         "teamName": "Los Asesinos",
         "reignStart": "Week 0",
-        "defenses": 2
+        "defenses": 3
       }
     ],
     "resistance": [
@@ -56,7 +56,7 @@
         "title": "Resistance Television Championship",
         "champion": "Mike McCoy",
         "reignStart": "Week 0",
-        "defenses": 3
+        "defenses": 4
       },
       {
         "title": "Resistance Cruiserweight Championship",
@@ -68,7 +68,7 @@
         "title": "Resistance Women's Championship",
         "champion": "Mia Taylor",
         "reignStart": "Week 0",
-        "defenses": 0
+        "defenses": 1
       },
       {
         "title": "Resistance Tag Team Championship",
@@ -86,7 +86,7 @@
         "title": "NEO World Championship",
         "champion": "Judge James Morgan",
         "reignStart": "Week 0",
-        "defenses": 3
+        "defenses": 4
       },
       {
         "title": "NEO Internet Championship",
@@ -98,7 +98,7 @@
         "title": "NEO Women's Championship",
         "champion": "Monica Cruz",
         "reignStart": "Week 0",
-        "defenses": 1
+        "defenses": 2
       },
       {
         "title": "NEO Tag Team Championship",
