@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2025-11-14",
-  "currentWeek": 5,
+  "lastUpdated": "2025-11-21",
+  "currentWeek": 6,
   "storylines": {
     "reign": [
       {
@@ -18,7 +18,7 @@
         ],
         "startWeek": 0,
         "description": "Ryan Odyssey uses psychological warfare against dual champion Avalanche Anderson",
-        "nextBeat": "Ryan Odyssey confronts Anderson directly, championship match officially announced",
+        "nextBeat": "Championship match between Anderson and Odyssey takes place, psychological warfare reaches peak intensity",
         "longTermDirection": "Title match at PPV"
       },
       {
@@ -35,7 +35,7 @@
         ],
         "startWeek": 0,
         "description": "WOLF MAN seeks rematch after brutal chair attack on champion Cameron Grayson",
-        "nextBeat": "WOLF MAN's frustration boils over after clean loss, seeks extreme measures for next opportunity",
+        "nextBeat": "WOLF MAN demands extreme stipulation match to settle the rivalry once and for all",
         "longTermDirection": "Rematch with stipulation"
       },
       {
@@ -53,7 +53,7 @@
         ],
         "startWeek": 0,
         "description": "Dr. Thorne's alliance targets Women's Champion Ivy Knight through psychological manipulation",
-        "nextBeat": "Dr. Thorne introduces new psychological tactics, possibly recruiting additional allies",
+        "nextBeat": "Dr. Thorne recruits additional allies to form larger faction targeting Ivy Knight",
         "longTermDirection": "Championship match"
       },
       {
@@ -106,7 +106,7 @@
         ],
         "startWeek": 0,
         "description": "XXCW hired mercenary Archer Quincannon to destroy World Champion Holden Nobody",
-        "nextBeat": "Official World Championship match set between Nobody and Quincannon",
+        "nextBeat": "Holden Nobody vs Archer Quincannon World Championship match takes place",
         "longTermDirection": "Championship match"
       },
       {
@@ -146,7 +146,7 @@
         ],
         "startWeek": 0,
         "description": "Women's Champion Mia Taylor seeks revenge after brutal XXCW attack",
-        "nextBeat": "Mia Taylor seeks revenge match against Mike McCoy for the attack",
+        "nextBeat": "Mia Taylor vs Mike McCoy revenge match is officially signed",
         "longTermDirection": "Revenge matches"
       },
       {
@@ -164,7 +164,7 @@
         ],
         "startWeek": 0,
         "description": "High-flying cruiserweights create exciting division",
-        "nextBeat": "Pyro demands Television Championship rematch, XXCW pressure mounts on McCoy",
+        "nextBeat": "Pyro vs Mike McCoy Television Championship match is set",
         "longTermDirection": "Championship picture development"
       },
       {
@@ -219,7 +219,7 @@
         ],
         "startWeek": 0,
         "description": "XXCW invader Preston Alexander's mysterious agenda creates four-way standoff",
-        "nextBeat": "Alexander's attack on Morgan leads to World Championship opportunity",
+        "nextBeat": "Judge Morgan vs Preston Alexander NEO World Championship match takes place",
         "longTermDirection": "Multi-person title match"
       },
       {
@@ -268,7 +268,7 @@
         "championships": [],
         "startWeek": 0,
         "description": "Some Consortium members face confidence issues and losing streaks",
-        "nextBeat": "Judge Morgan removes Rich Gold from Consortium after continued failures",
+        "nextBeat": "Rich Gold seeks new alliance or extreme measures after Consortium removal",
         "longTermDirection": "Potential faction split"
       },
       {
@@ -285,7 +285,7 @@
         ],
         "startWeek": 0,
         "description": "Awesome AF fights Consortium while maintaining independence",
-        "nextBeat": "Awesome AF as new Tag Champions must defend against multiple Consortium challengers seeking to reclaim power",
+        "nextBeat": "Awesome AF as new Tag Champions face immediate Consortium retaliation attempts",
         "longTermDirection": "Establish as anti-Consortium force"
       }
     ]

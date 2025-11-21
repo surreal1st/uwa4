@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2025-11-14",
-  "currentWeek": 5,
+  "lastUpdated": "2025-11-21",
+  "currentWeek": 6,
   "champions": {
     "uwa": {
       "title": "UWA World Championship",
@@ -20,7 +20,7 @@
         "title": "Horizon Championship",
         "champion": "Cameron Grayson",
         "reignStart": "Week 0",
-        "defenses": 5
+        "defenses": 6
       },
       {
         "title": "REIGN Women's Championship",
@@ -42,7 +42,7 @@
         ],
         "teamName": "Los Asesinos",
         "reignStart": "Week 0",
-        "defenses": 3
+        "defenses": 4
       }
     ],
     "resistance": [
@@ -108,7 +108,7 @@
         ],
         "teamName": "The Consortium",
         "reignStart": "Week 0",
-        "defenses": 1
+        "defenses": 2
       }
     ]
   }
