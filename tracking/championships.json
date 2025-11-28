@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2025-11-21",
-  "currentWeek": 6,
+  "lastUpdated": "2025-11-28",
+  "currentWeek": 7,
   "champions": {
     "uwa": {
       "title": "UWA World Championship",
@@ -14,13 +14,13 @@
         "title": "REIGN World Championship",
         "champion": "Avalanche Anderson",
         "reignStart": "Week 0",
-        "defenses": 1
+        "defenses": 2
       },
       {
         "title": "Horizon Championship",
         "champion": "Cameron Grayson",
         "reignStart": "Week 0",
-        "defenses": 6
+        "defenses": 7
       },
       {
         "title": "REIGN Women's Championship",
@@ -42,7 +42,7 @@
         ],
         "teamName": "Los Asesinos",
         "reignStart": "Week 0",
-        "defenses": 4
+        "defenses": 5
       }
     ],
     "resistance": [
@@ -50,13 +50,13 @@
         "title": "Resistance World Championship",
         "champion": "Holden Nobody",
         "reignStart": "Week 0",
-        "defenses": 0
+        "defenses": 1
       },
       {
         "title": "Resistance Television Championship",
         "champion": "Mike McCoy",
         "reignStart": "Week 0",
-        "defenses": 4
+        "defenses": 5
       },
       {
         "title": "Resistance Cruiserweight Championship",
@@ -86,7 +86,7 @@
         "title": "NEO World Championship",
         "champion": "Judge James Morgan",
         "reignStart": "Week 0",
-        "defenses": 4
+        "defenses": 5
       },
       {
         "title": "NEO Internet Championship",
@@ -108,7 +108,7 @@
         ],
         "teamName": "The Consortium",
         "reignStart": "Week 0",
-        "defenses": 2
+        "defenses": 3
       }
     ]
   }

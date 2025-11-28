@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2025-11-21",
-  "currentWeek": 6,
+  "lastUpdated": "2025-11-28",
+  "currentWeek": 7,
   "storylines": {
     "reign": [
       {
@@ -18,7 +18,7 @@
         ],
         "startWeek": 0,
         "description": "Ryan Odyssey uses psychological warfare against dual champion Avalanche Anderson",
-        "nextBeat": "Championship match between Anderson and Odyssey takes place, psychological warfare reaches peak intensity",
+        "nextBeat": "Anderson and Odyssey's rivalry reaches breaking point, extreme stipulation match is inevitable as psychological warfare damages both competitors",
         "longTermDirection": "Title match at PPV"
       },
       {
@@ -35,7 +35,7 @@
         ],
         "startWeek": 0,
         "description": "WOLF MAN seeks rematch after brutal chair attack on champion Cameron Grayson",
-        "nextBeat": "WOLF MAN demands extreme stipulation match to settle the rivalry once and for all",
+        "nextBeat": "Cameron Grayson demands immediate rematch after controversial loss, WOLF MAN's championship celebration is short-lived",
         "longTermDirection": "Rematch with stipulation"
       },
       {
@@ -53,7 +53,7 @@
         ],
         "startWeek": 0,
         "description": "Dr. Thorne's alliance targets Women's Champion Ivy Knight through psychological manipulation",
-        "nextBeat": "Dr. Thorne recruits additional allies to form larger faction targeting Ivy Knight",
+        "nextBeat": "Dr. Thorne reveals additional recruits to target Ivy Knight's championship, Thorne Alliance expands",
         "longTermDirection": "Championship match"
       },
       {
@@ -106,7 +106,7 @@
         ],
         "startWeek": 0,
         "description": "XXCW hired mercenary Archer Quincannon to destroy World Champion Holden Nobody",
-        "nextBeat": "Holden Nobody vs Archer Quincannon World Championship match takes place",
+        "nextBeat": "Holden Nobody vs Archer Quincannon rematch set for extreme stipulation as both men prove they'll destroy each other",
         "longTermDirection": "Championship match"
       },
       {
@@ -146,7 +146,7 @@
         ],
         "startWeek": 0,
         "description": "Women's Champion Mia Taylor seeks revenge after brutal XXCW attack",
-        "nextBeat": "Mia Taylor vs Mike McCoy revenge match is officially signed",
+        "nextBeat": "Mia Taylor regroups after championship loss, plans final confrontation with McCoy to end his psychological dominance",
         "longTermDirection": "Revenge matches"
       },
       {
@@ -219,7 +219,7 @@
         ],
         "startWeek": 0,
         "description": "XXCW invader Preston Alexander's mysterious agenda creates four-way standoff",
-        "nextBeat": "Judge Morgan vs Preston Alexander NEO World Championship match takes place",
+        "nextBeat": "Preston Alexander's satisfaction with controversial loss reveals deeper game, Morgan realizes he's being manipulated",
         "longTermDirection": "Multi-person title match"
       },
       {
@@ -285,7 +285,7 @@
         ],
         "startWeek": 0,
         "description": "Awesome AF fights Consortium while maintaining independence",
-        "nextBeat": "Awesome AF as new Tag Champions face immediate Consortium retaliation attempts",
+        "nextBeat": "Awesome AF as new Tag Champions face immediate Consortium retaliation and attempt to reclaim titles",
         "longTermDirection": "Establish as anti-Consortium force"
       }
     ]
