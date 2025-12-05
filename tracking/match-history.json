@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2025-11-28",
-  "totalMatches": 91,
+  "lastUpdated": "2025-12-05",
+  "totalMatches": 103,
   "matches": [
     {
       "week": 1,
@@ -1379,6 +1379,188 @@
       "method": "countout",
       "duration": "16:53",
       "championship": "NEO World Championship",
+      "championship_change": false,
+      "storyline_id": "neo-001"
+    },
+    {
+      "week": 8,
+      "brand": "reign",
+      "date": "2025-12-05",
+      "participants": [
+        "Kade Anderson",
+        "Jett Williams"
+      ],
+      "winner": "Kade Anderson",
+      "method": "pinfall",
+      "duration": "8:32",
+      "championship": null,
+      "championship_change": false,
+      "storyline_id": "reign-005"
+    },
+    {
+      "week": 8,
+      "brand": "reign",
+      "date": "2025-12-05",
+      "participants": [
+        "Lexi Gomez",
+        "Phoenix Rayne"
+      ],
+      "winner": "Lexi Gomez",
+      "method": "submission",
+      "duration": "11:47",
+      "championship": null,
+      "championship_change": false,
+      "storyline_id": "reign-003"
+    },
+    {
+      "week": 8,
+      "brand": "reign",
+      "date": "2025-12-05",
+      "participants": [
+        "Cameron Grayson",
+        "Dominic Steele"
+      ],
+      "winner": "Cameron Grayson",
+      "method": "pinfall",
+      "duration": "13:22",
+      "championship": "Horizon Championship",
+      "championship_change": false,
+      "storyline_id": "reign-002"
+    },
+    {
+      "week": 8,
+      "brand": "reign",
+      "date": "2025-12-05",
+      "participants": [
+        "Avalanche Anderson",
+        "Ryan Odyssey"
+      ],
+      "winner": "Ryan Odyssey",
+      "method": "submission",
+      "duration": "16:43",
+      "championship": null,
+      "championship_change": false,
+      "storyline_id": "reign-001"
+    },
+    {
+      "week": 8,
+      "brand": "resistance",
+      "date": "2025-12-05",
+      "participants": [
+        "Tommy Flanagan",
+        "Brick Donovan"
+      ],
+      "winner": "Tommy Flanagan",
+      "method": "pinfall",
+      "duration": "9:15",
+      "championship": null,
+      "championship_change": false,
+      "storyline_id": null
+    },
+    {
+      "week": 8,
+      "brand": "resistance",
+      "date": "2025-12-05",
+      "participants": [
+        "Pyro",
+        "Silas Black"
+      ],
+      "winner": "Pyro",
+      "method": "pinfall",
+      "duration": "12:38",
+      "championship": null,
+      "championship_change": false,
+      "storyline_id": "resistance-004"
+    },
+    {
+      "week": 8,
+      "brand": "resistance",
+      "date": "2025-12-05",
+      "participants": [
+        "Rosa Guerrera",
+        "Jasmine Cruz",
+        "Mia Taylor"
+      ],
+      "winner": "Mia Taylor",
+      "method": "pinfall",
+      "duration": "14:27",
+      "championship": "Resistance Women's Championship",
+      "championship_change": false,
+      "storyline_id": "resistance-003"
+    },
+    {
+      "week": 8,
+      "brand": "resistance",
+      "date": "2025-12-05",
+      "participants": [
+        "Holden Nobody",
+        "Archer Quincannon"
+      ],
+      "winner": "No Contest",
+      "method": "no contest",
+      "duration": "7:45",
+      "championship": null,
+      "championship_change": false,
+      "storyline_id": "resistance-001"
+    },
+    {
+      "week": 8,
+      "brand": "neo",
+      "date": "2025-12-05",
+      "participants": [
+        "Static Jones",
+        "Desmond Rich"
+      ],
+      "winner": "Static Jones",
+      "method": "pinfall",
+      "duration": "10:23",
+      "championship": null,
+      "championship_change": false,
+      "storyline_id": "neo-004"
+    },
+    {
+      "week": 8,
+      "brand": "neo",
+      "date": "2025-12-05",
+      "participants": [
+        "Rich Gold",
+        "Micah Black"
+      ],
+      "winner": "Micah Black",
+      "method": "pinfall",
+      "duration": "11:56",
+      "championship": null,
+      "championship_change": false,
+      "storyline_id": "neo-004"
+    },
+    {
+      "week": 8,
+      "brand": "neo",
+      "date": "2025-12-05",
+      "participants": [
+        "Adam Winters",
+        "E.B. Mitchell"
+      ],
+      "winner": "Adam Winters",
+      "method": "pinfall",
+      "duration": "15:32",
+      "championship": "NEO Internet Championship",
+      "championship_change": false,
+      "storyline_id": "neo-005"
+    },
+    {
+      "week": 8,
+      "brand": "neo",
+      "date": "2025-12-05",
+      "participants": [
+        "Preston Alexander",
+        "Judge James Morgan",
+        "David Fish"
+      ],
+      "winner": "Preston Alexander",
+      "method": "pinfall",
+      "duration": "18:24",
+      "championship": null,
       "championship_change": false,
       "storyline_id": "neo-001"
     }

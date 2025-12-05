@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2025-11-28",
-  "currentWeek": 7,
+  "lastUpdated": "2025-12-05",
+  "currentWeek": 8,
   "champions": {
     "uwa": {
       "title": "UWA World Championship",
@@ -20,7 +20,7 @@
         "title": "Horizon Championship",
         "champion": "Cameron Grayson",
         "reignStart": "Week 0",
-        "defenses": 7
+        "defenses": 8
       },
       {
         "title": "REIGN Women's Championship",
@@ -68,7 +68,7 @@
         "title": "Resistance Women's Championship",
         "champion": "Mia Taylor",
         "reignStart": "Week 0",
-        "defenses": 1
+        "defenses": 2
       },
       {
         "title": "Resistance Tag Team Championship",
@@ -92,7 +92,7 @@
         "title": "NEO Internet Championship",
         "champion": "Adam Winters",
         "reignStart": "Week 0",
-        "defenses": 2
+        "defenses": 3
       },
       {
         "title": "NEO Women's Championship",
